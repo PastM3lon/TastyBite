@@ -21,61 +21,69 @@
         </div>
     </nav>
 
-<hr>
+    <hr>
 
-<h1>Add New Recipe</h1>
+    <main>
 
-<form>
+        <div class="add-recipe" align="center">
+            <div class="admin-header">
+                <h2>Add New Recipe</h2>
+            </div>
 
-<label>Recipe Name:</label><br>
-<input type="text" name="recipe_name" required>
-<br><br>
 
-<label>Recipe Page File Name:</label><br>
-<input type="text" placeholder="example: Shawarma.html">
-<br><br>
+            <div class="admin-form">
+                <form>
 
-<label>Course:</label><br>
-<select>
-<option>Appetizers</option>
-<option>Main Course</option>
-<option>Dessert</option>
-</select>
+                    <label>Recipe Name:</label>
+                    <input type="text" name="recipe_name" required>
+                    <br><br>
 
-<h3>Ingredients</h3>
+                    <label>Recipe Page File Name:</label>
+                    <input type="text" placeholder="example: Shawarma.html">
+                    <br><br>
+                    <label>Recipe image:</label>
+                    <input type="file" placeholder="example: Shawarma.html">
+                    <br><br>
 
-<label>Ingredient 1:</label><br>
-<input type="text">
-<br><br>
+                    <label>Course:</label>
+                    <select>
+                        <option>Appetizers</option>
+                        <option>Main Course</option>
+                        <option>Dessert</option>
+                    </select>
 
-<label>Ingredient 2:</label><br>
-<input type="text">
-<br><br>
+                    <h3>Ingredients</h3>
+                    <textarea rows="5" cols="40"></textarea>
+                    <br><br>
 
-<label>Ingredient 3:</label><br>
-<input type="text">
-<br><br>
+                    <h3>Instructions:</h3>
 
-<h3>Description</h3>
+                    <textarea rows="5" cols="40"></textarea>
 
-<textarea rows="5" cols="40"></textarea>
+                    <br><br>
 
-<br><br>
+                    <button type="submit">Add Recipe</button>
 
-<button type="submit">Add Recipe</button>
+                </form>
+            </div>
+        </div>
 
-</form>
+        <hr>
 
-<hr>
 
-<h2>Existing Recipes</h2>
+        <div class="existing-recipes">
+            <h2>Existing Recipes</h2>
 
-<ul>
-<li><a href="Shawarma.html">Shawarma</a> | <button>Edit</button> | <button>Delete</button></li>
-<li><a href="Tacos.html">Tacos</a> | <button>Edit</button> | <button>Delete</button></li>
-<li><a href="SpaghettiCarbonara.html">Spaghetti Carbonara</a> | <button>Edit</button> | <button>Delete</button></li>
-</ul>
+            <ul>
+                <li><a href="Shawarma.html">Shawarma</a> | <button>Edit</button> | <button>Delete</button></li>
+                <li><a href="Tacos.html">Tacos</a> | <button>Edit</button> | <button>Delete</button></li>
+                <li><a href="SpaghettiCarbonara.html">Spaghetti Carbonara</a> | <button>Edit</button> |
+                    <button>Delete</button>
+                </li>
+            </ul>
+        </div>
 
+    </main>
 </body>
 
 </html>
