@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Panel - Recipe Finder</title>
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h2>Recipe Finder - Admin</h2>
+
+    <a href="Welcome.html">Home</a> |
+    <a href="Favorites.html">Favorites</a> |
+    <a href="AdminPage.html">Admin</a> |
+    <a href="Login.html">Logout</a>
+</nav>
+
+<hr>
+
+<h1>Add New Recipe</h1>
+
+<form>
+
+<label>Recipe Name:</label><br>
+<input type="text" name="recipe_name" required>
+<br><br>
+
+<label>Recipe Page File Name:</label><br>
+<input type="text" placeholder="example: Shawarma.html">
+<br><br>
+
+<label>Course:</label><br>
+<select>
+<option>Appetizers</option>
+<option>Main Course</option>
+<option>Dessert</option>
+</select>
+
+<br><br>
+
+<h3>Ingredients</h3>
+
+<label>Ingredient 1:</label><br>
+<input type="text">
+<br><br>
+
+<label>Ingredient 2:</label><br>
+<input type="text">
+<br><br>
+
+<label>Ingredient 3:</label><br>
+<input type="text">
+<br><br>
+
+<h3>Description</h3>
+
+<textarea rows="5" cols="40"></textarea>
+
+<br><br>
+
+<button type="submit">Add Recipe</button>
+
+</form>
+
+<hr>
+
+<h2>Existing Recipes</h2>
+
+<ul>
+<li><a href="Shawarma.html">Shawarma</a> | Edit | Delete</li>
+<li><a href="Tacos.html">Tacos</a> | Edit | Delete</li>
+<li><a href="SpaghettiCarbonara.html">Spaghetti Carbonara</a> | Edit | Delete</li>
+</ul>
+
+</body>
+
+</html>
