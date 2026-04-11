@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In--TastyBite</title>
     <link rel="stylesheet" href="LogInStyle.css">
+    <script src="login.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
             <h2>Welcome Back</h2>
             <p class="subtitle">Sign in to continue cooking</p>
 
-            <form action="../Recipes Page/Recipes.html" class="login-form">
+            <form action="../Recipes Page/Recipes.html" class="login-form" onsubmit="return handleLogin()">
                 <label for="logInEmail">Email Address</label>
                 <div class="input-field">
                     <svg class="input-icon" viewBox="0 0 24 24">
@@ -43,10 +44,7 @@
                     <input type="password" id="logInPassword" name="password" placeholder="●●●●●●●●" required>
                 </div>
 
-                <div class="admin">
-                    <input type="checkbox" id="logInRememberMe" name="rememberMe">
-                    <span><b>Remember Me</b></span>
-                </div>
+                <p id="loginMessage" class="form-message" aria-live="polite"></p>
 
                 <button type="submit" class="submit">Log In</button>
                 <p class="signup-text">Don't have an account? <a href="../Sign Up/SignUp.html">Sign up</a></p>

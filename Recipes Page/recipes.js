@@ -1,5 +1,8 @@
- const isAdmin = localStorage.getItem("isAdmin") === "true";
- const adminLink = document.querySelector('a[href="../Admin/Admin.html"]');
-    if (!isAdmin) {
-     adminLink.style.display = "none";
-    }     
+document.addEventListener("DOMContentLoaded", () => {
+   const isAdmin = localStorage.getItem("isAdmin") === "true";
+   const adminNavItem = document.querySelector(".admin-icon");
+
+   if (adminNavItem && !isAdmin) {
+      adminNavItem.style.display = "none";
+   }
+});

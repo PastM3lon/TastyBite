@@ -1,3 +1,7 @@
+:root {
+    --accent: #ff6b35;;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +12,11 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #f9f6f0;
     color: #1a1a1a;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 nav {
@@ -70,4 +79,28 @@ nav h1 {
 
 .nav-links a:hover svg {
     fill: #FF6B35;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.brand-name {
+    margin-top: 1px;
+}
+
+#logo {
+    width: 34px;
+    height: 34px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex: 0 0 auto;
 }
