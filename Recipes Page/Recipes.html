@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="recipes.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipes</title>
+    <title>Home page</title>
 </head>
 
 <body>
     <nav>
         <div class="nav-log">
-            <h1>Recipe Finder</h1>
+            <h1>TastyBite</h1>
         </div>
         <div class="nav-links" align="right">
             <a href="../Recipes Page/Recipes.html">Home</a>
@@ -20,6 +21,13 @@
             <a href="../Sign Up/SignUp.html">Sign Up</a>
             <a href="../Log In/LogIn.html">Log In</a>
         </div>
+        <script>
+            const isAdmin = localStorage.getItem("isAdmin") === "true";
+            const adminLink = document.querySelector('a[href="../Admin/Admin.html"]');
+            if (!isAdmin) {
+                adminLink.style.display = "none";
+            }
+        </script>
     </nav>
     <main>
         <div class="home-header">

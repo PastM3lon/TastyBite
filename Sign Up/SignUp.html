@@ -23,7 +23,7 @@
             <h2>Create Account</h2>
             <p class="subtitle">Join our cooking community today</p>
 
-            <form action="../Log In/LogIn.html" class="signup-form">
+            <form action="../Log In/LogIn.html" class="signup-form" onsubmit="return handleSubmit()">
                 <label for="signUpName">Full Name</label>
                 <div class="input-field">
                     <svg class="input-icon" viewBox="0 0 24 24">
@@ -69,6 +69,13 @@
             </form>
         </div>
     </main>
+    <script>
+  function handleSubmit() {
+  let check = document.getElementById("signUpIsAdmin");
+  let isAdmin = check.checked;
+  localStorage.setItem("isAdmin", isAdmin);
+  return true;}
+ </script>
 </body>
 
 </html>
