@@ -11,7 +11,7 @@ function accountSubmit() {
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
     const isAdmin = adminCheckbox.checked;
-
+    
     message.textContent = "";
     message.classList.remove("error", "success");
 
