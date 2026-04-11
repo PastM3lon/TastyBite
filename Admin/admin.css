@@ -71,3 +71,86 @@ nav h1 {
 .nav-links a:hover svg {
     fill: #FF6B35;
 }
+.admindashboard {
+    background-color: #FFF4ED;
+    padding-bottom: 60px;
+    border-bottom: 5px solid#FFFBF7;
+}
+.admindashboard h1 {
+    margin-left: 20px;
+    font-size: 2.5rem;
+    color: #2D1B0E;
+    margin-bottom: 10px;
+}
+.admindashboard p {
+    margin-left: 20px;
+    font-size: 1.2rem;
+    color: #2D1B0E;
+}
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    background-color:#FFF8F3;
+    padding: 20px 50px;
+    border-radius: 50px;
+    border-style: solid;
+}
+.admin-header button {
+    background-color: #FF6B35;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 50px;
+}
+.admin-header button:hover {
+    background-color: #FF4A1E;
+}
+.admin-header p{
+    font-size: 1.5rem;
+    color: 2D1B0E;
+}
+.admin-form {
+    margin: 20px 50px;
+    padding: 20px;
+    background-color: #FFF8F3;
+    border-radius: 12px;
+    border: 1px solid #e0d8d0;
+}
+.admin-form input[type="text"],
+.admin-form input[type="file"],
+.admin-form select,
+.admin-form textarea {
+    padding: 12px 16px;
+    border: 1px solid #e0d8d0;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #333;
+    background: #fafaf8;
+    outline: none;
+    font-family: inherit;
+    width: 300px;
+}
+.admin-form input[type="text"]:focus,
+.admin-form select:focus,
+.admin-form textarea:focus {
+    border-color: #aaa;
+    background: white;
+}
+.admin-form h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #2D1B0E;
+}
+.admin-form button {
+    margin-top: 20px;
+    background-color: #FF6B35;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 50px;
+}
+.admin-form button:hover {
+    background-color: #FF4A1E;
+}

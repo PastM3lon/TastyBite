@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <title>Admin Panel - Recipe Finder</title>
+    <title>Admin Panel</title>
     <link rel ="stylesheet" href="admin.css">
+    <script src="admin.js" defer></script>
 </head>
-
 <body>
 
 <nav>
@@ -68,20 +68,19 @@
         </div>
     </div>
 </nav>
-
-    <hr>
-
     <main>
-
-        <div class="add-recipe" align="center">
+        <div class="admindashboard" >
+            <h1>Admin Dashboard</h1>
+            <p>Manage your recipe collection</p>
+        </div>
+          <div class="add-recipe" >
             <div class="admin-header">
-                <h2>Add New Recipe</h2>
+                <p>Add a New Recipe</p>
+                <button id="add-recipe-btn" >+ Add Recipe</button>
             </div>
-
-
-            <div class="admin-form">
+            <div class="admin-form" hidden >
                 <form>
-
+                    <h1 align="left">Add a New Recipe</h1>
                     <label>Recipe Name:</label>
                     <input type="text" name="recipe_name" required>
                     <br><br>
@@ -120,7 +119,7 @@
 
                     <br><br>
 
-                    <button type="submit">Add Recipe</button>
+                    <button id="add-recipe-submit" type="submit">Add Recipe</button>
 
                 </form>
             </div>
