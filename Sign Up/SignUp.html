@@ -24,7 +24,7 @@
             <h2>Create Account</h2>
             <p class="subtitle">Join our cooking community today</p>
 
-            <form action="../Log In/LogIn.html" class="signup-form" onsubmit="return handleSubmit()">
+            <form action="../Log In/LogIn.html" class="signup-form" onsubmit="return accountSubmit()">
                 <label for="signUpName">Full Name</label>
                 <div class="input-field">
                     <svg class="input-icon" viewBox="0 0 24 24">
@@ -64,6 +64,8 @@
                     <input type="checkbox" id="signUpIsAdmin" name="isAdmin">
                     <span>Sign Up as Admin</span>
                 </div>
+
+                <p id="signupMessage" class="form-message" aria-live="polite"></p>
 
                 <button type="submit" class="submit">Create Account</button>
                 <p class="signin-text">Already have an account? <a href="../Log In/LogIn.html">Log in</a></p>

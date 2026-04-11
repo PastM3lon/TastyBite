@@ -1,8 +1,4 @@
-* {
-	box-sizing: border-box;
-}
-
-body {
+:root {
     --bg: #f3f0f0;
 	--card-bg: #ffffff;
 	--card-border: #f4d8cc;
@@ -11,6 +7,14 @@ body {
 	--accent: #ff6b35;
 	--input-border: #f3d7ca;
 	--icon: #8f7a6f;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+    
 	margin: 0;
 	min-height: 100vh;
 	font-family: 'Poppins', sans-serif;
@@ -133,6 +137,21 @@ body {
 	width: 15px;
 	height: 15px;
 	accent-color: #222;
+}
+
+.form-message {
+	min-height: 20px;
+	margin: 0;
+	font-size: 0.92rem;
+	font-weight: 600;
+}
+
+.form-message.error {
+	color: #b3261e;
+}
+
+.form-message.success {
+	color: #2e7d32;
 }
 
 .submit {
