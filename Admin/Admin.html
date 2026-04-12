@@ -86,40 +86,39 @@
                 <h2>Add a New Recipe</h2>
 
                 <label>Recipe Name</label>
-                <input type="text" placeholder="e.g. Spaghetti Carbonara">
+                <input id="recipe-name" type="text" placeholder="e.g. Spaghetti Carbonara">
+                <input type="hidden" id="editing-recipe-id">
 
                 <label>Recipe Image path</label>
-                <input type="url" placeholder="https://example.com/image.jpg">
+                <input id="recipe-image" type="url" placeholder="https://example.com/image.jpg">
 
                 <label>YouTube Link</label>
-                <input type="url" placeholder="https://www.youtube.com/watch?v=example">
+                <input id="recipe-youtube" type="url" placeholder="https://www.youtube.com/watch?v=example">
 
                 <div class="ingredients-header">
                     <span>Ingredients</span>
-                    <button class="add-btn" id="add-btn">+ Add Ingredient</button>
+                    <button class="add-btn" id="add-ingredient-btn">+ Add Ingredient</button>
                 </div>
                 <div id="ingredients-list">
                     <div class="ingredient-row">
                         <input class="qty" type="text" placeholder="2 cups">
                         <input class="name" type="text" placeholder="Ingredient name">
-                        <button class="remove-btn">&#10005;</button>
-                    </div>
-                    <div class="ingredient-row">
-                        <input class="qty" type="text" placeholder="2 cups">
-                        <input class="name" type="text" placeholder="Ingredient name">
-                        <button class="remove-btn">&#10005;</button>
-                    </div>
-                    <div class="ingredient-row">
-                        <input class="qty" type="text" placeholder="2 cups">
-                        <input class="name" type="text" placeholder="Ingredient name">
-                        <button class="remove-btn">&#10005;</button>
+                        <button type="button" class="remove-btn">&#10005;</button>
                     </div>
                 </div>
 
-                <label>Instructions</label>
-                <textarea placeholder="Write step-by-step instructions here..."></textarea>
+                <div class="instructions-header">
+                    <span>Instructions</span>
+                    <button class="add-btn" id="add-instruction-btn">+ Add Instruction</button>
+                </div>
+                <div id="instructions-list">
+                    <div class="instruction-row">
+                        <input class="instruction-text" type="text" placeholder="Instruction step">
+                        <button type="button" class="remove-btn">&#10005;</button>
+                    </div>
+                </div>
 
-                <button class="submit-btn">Add Recipe</button>
+                <button type="button" class="submit-btn" id="save-recipe-btn">Add Recipe</button>
             </div>
 
             <div class="existing-recipes">
@@ -145,6 +144,7 @@
                         <button class="delete-btn">Delete</button>
                     </div>
                 </div>
+                <div id="custom-recipes-list"></div>
             </div>
         </div>
 

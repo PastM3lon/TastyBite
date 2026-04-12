@@ -196,7 +196,8 @@ textarea {
     line-height: 1.5;
 }
 
-.ingredients-header {
+.ingredients-header,
+.instructions-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -204,7 +205,8 @@ textarea {
     margin-bottom: 12px;
 }
 
-.ingredients-header span {
+.ingredients-header span,
+.instructions-header span {
     font-size: 14px;
     font-weight: 500;
     color: #1a1a1a;
@@ -225,7 +227,8 @@ textarea {
     background: #ffe0e0;
 }
 
-.ingredient-row {
+.ingredient-row,
+.instruction-row {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -237,8 +240,16 @@ textarea {
     flex-shrink: 0;
 }
 
-.ingredient-row .name {
+.ingredient-row .name,
+.instruction-row .instruction-text {
     flex: 1;
+}
+
+.instructions-header span,
+.ingredients-header span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a1a;
 }
 
 .remove-btn {

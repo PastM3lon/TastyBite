@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f6f0;
+    color: #1a1a1a;
+}
+
+.recipe-page {
+    max-width: 1000px;
+    margin: 5rem auto 3rem;
+    padding: 2rem;
+}
+
+.recipe-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.recipe-back:hover {
+    color: #e63946;
+}
+
+.recipe-card-detail {
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.recipe-header {
+    padding: 2rem 2rem 0;
+}
+
+.recipe-header h1 {
+    font-size: 2.4rem;
+    line-height: 1.1;
+    font-weight: 800;
+    color: #1a1a1a;
+}
+
+.recipe-image,
+.recipe-video {
+    width: 100%;
+}
+
+.recipe-image img,
+.recipe-video iframe {
+    width: 100%;
+    height: 520px;
+    display: block;
+    border: none;
+    object-fit: cover;
+}
+
+.recipe-content {
+    padding: 2rem;
+}
+
+.recipe-section {
+    margin-bottom: 2rem;
+}
+
+.recipe-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.recipe-section ul,
+.recipe-section ol {
+    padding-left: 1.5rem;
+    line-height: 1.8;
+}
+
+.recipe-section li {
+    margin-bottom: 0.75rem;
+}
+
+.no-recipe {
+    padding: 3rem;
+    text-align: center;
+    font-size: 1.1rem;
+}
