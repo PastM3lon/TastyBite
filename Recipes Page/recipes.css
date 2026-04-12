@@ -202,3 +202,18 @@ nav {
         grid-template-columns: 1fr;
     }
 }
+
+/* footer style */
+
+.footer{
+    background-color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer .footer-p p{
+    font-size: 14px;
+    line-height: 20px;
+    color: #7a6a5c;
+    margin-top: 15px;
+}
