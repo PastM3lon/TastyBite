@@ -4,6 +4,7 @@
 <head>
     <title>Search Recipes - Recipe Finder</title>
     <link rel="stylesheet" href="search.css">
+    <script src="search.js" defer></script>
 </head>
 
 <body>
@@ -86,14 +87,70 @@
         <div class="search-form">
             <div class="search-dish">
                 <label>Search by Dish Name:</label>
-                <input type="text" placeholder="Enter recipe name">
+                <input id="dishSearchInput" type="text" placeholder="Enter recipe name">
             </div>
 
             <div class="search-ingre">
                 <label>Search by Ingredient:</label>
-                <input type="text" placeholder="Enter ingredient">
+                <input id="ingredientSearchInput" type="text" placeholder="Enter ingredient">
+            </div>
+
+            <div class="search-action">
+                <button id="searchButton" class="search-btn" type="button">Search</button>
             </div>
         </div>
+
+        <div class="recipes">
+            <div class="recipe-card" id="spaghetti-carbonara" style="display: block;">
+                <div class="card-img">
+                    <a href="../SpaghettiCarbonara/SpaghettiCarbonara.html">
+                        <img src="https://www.allrecipes.com/thmb/zJzTLhtUWknHXVoFIzysljJ9wR8=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg"
+                            width="400" height="300">
+                    </a>
+                </div>
+                <div class="card-p">
+                    <p>Spaghetti Carbonara</p>
+                    <span class="ingredient-preview">Spaghetti, pancetta, egg, parmesan</span>
+                </div>
+                <div class="add-fav">
+                    <a class="view-recipe-btn" href="../SpaghettiCarbonara/SpaghettiCarbonara.html">View Recipe</a>
+                </div>
+            </div>
+
+            <div class="recipe-card" id="shawarma" style="display: block;">
+                <div class="card-img">
+                    <a href="../Shawarma/Shawarma.html">
+                        <img src="https://www.munatycooking.com/wp-content/uploads/2023/12/chicken-shawarma-image-feature-2023.jpg"
+                            width="400" height="300">
+                    </a>
+                </div>
+                <div class="card-p">
+                    <p>Shawarma</p>
+                    <span class="ingredient-preview">Chicken, garlic, cumin, pita bread</span>
+                </div>
+                <div class="add-fav">
+                    <a class="view-recipe-btn" href="../Shawarma/Shawarma.html">View Recipe</a>
+                </div>
+            </div>
+
+            <div class="recipe-card" id="tacos" style="display: block;">
+                <div class="card-img">
+                    <a href="../Tacos/Tacos.html">
+                        <img src="https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos-1024x767.jpg"
+                            width="400" height="300">
+                    </a>
+                </div>
+                <div class="card-p">
+                    <p>Tacos</p>
+                    <span class="ingredient-preview">Beef, chili, tortillas, lime</span>
+                </div>
+                <div class="add-fav">
+                    <a class="view-recipe-btn" href="../Tacos/Tacos.html">View Recipe</a>
+                </div>
+            </div>
+        </div>
+
+        <p id="noResultsMessage" class="no-results" style="display:none">No recipes match your search.</p>
     </div>
 
 </body>
