@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
    const adminNavItem = document.querySelector(".admin-link");
    const currentUserEmail = (localStorage.getItem("currentUserEmail") || "").toLowerCase();
    const favoritesKey = "favoritesList_" + currentUserEmail;
+   const builtInRecipes = window.TastyBiteRecipes || {};
+   const unifiedRecipePage = "../Recipes Page/All Dishes/dishes.html";
 
    if (adminNavItem && !isAdmin) {
       adminNavItem.style.display = "none";
@@ -85,6 +87,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const recipeImage = card.querySelector(".card-img img").getAttribute("src");
       const recipeLink = card.querySelector(".card-img a").getAttribute("href");
       const favoriteButton = card.querySelector(".favorite-btn");
+      const detailAnchor = card.querySelector(".card-img a");
+
+      const buildSelectedRecipe = () => {
+         if (card.customRecipe) {
+            return card.customRecipe;
+         }
+
+         const builtIn = builtInRecipes[recipeId];
+         if (builtIn) {
+            return builtIn;
+         }
+
+         return {
+            id: recipeId,
+            title: recipeName,
+            image: recipeImage
+         };
+      };
 
       const syncButtonState = () => {
          const favorites = getFavorites();
@@ -105,8 +125,17 @@ document.addEventListener("DOMContentLoaded", () => {
          card.style.cursor = 'pointer';
          card.addEventListener('click', (event) => {
             if (event.target.closest('button')) return;
-            window.location.href = recipeLink;
+            localStorage.setItem("selectedRecipe", JSON.stringify(buildSelectedRecipe()));
+            window.location.href = unifiedRecipePage;
          });
+
+         if (detailAnchor) {
+            detailAnchor.addEventListener("click", (event) => {
+               event.preventDefault();
+               localStorage.setItem("selectedRecipe", JSON.stringify(buildSelectedRecipe()));
+               window.location.href = unifiedRecipePage;
+            });
+         }
       }
 
       favoriteButton.addEventListener("click", () => {
@@ -118,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
                id: recipeId,
                title: recipeName,
                image: recipeImage,
-               link: recipeLink
+               link: unifiedRecipePage
             };
 
             if (card.customRecipe) {
@@ -129,6 +158,11 @@ document.addEventListener("DOMContentLoaded", () => {
                   link: custom.link,
                   ingredients: custom.ingredients,
                   instructions: custom.instructions
+               };
+            } else if (builtInRecipes[recipeId]) {
+               favoriteItem = {
+                  ...favoriteItem,
+                  ...builtInRecipes[recipeId]
                };
             }
 

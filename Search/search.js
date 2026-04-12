@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const searchButton = document.getElementById("searchButton");
 	const noResultsMessage = document.getElementById("noResultsMessage");
 	const recipesContainer = document.querySelector(".recipes");
+	const builtInRecipes = window.TastyBiteRecipes || {};
+	const unifiedRecipePage = "../Recipes Page/All Dishes/dishes.html";
 
 	const getCustomRecipes = () => {
 		const stored = localStorage.getItem('customRecipes');
@@ -22,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const ingredientPreview = Array.isArray(recipe.ingredients)
 			? recipe.ingredients.map(i => i.ingredient || i.quantity || '').filter(Boolean).join(', ')
 			: '';
-		const recipeLink = recipe.detailPage ? `../Recipes Page/${recipe.detailPage}` : recipe.pageLink || '#';
+		const recipeLink = unifiedRecipePage;
 
 		card.innerHTML = `
 			<div class="card-img">
@@ -41,11 +43,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const viewBtn = card.querySelector('.view-recipe-btn');
 		viewBtn.addEventListener('click', (event) => {
-			if (recipe.detailPage) {
-				event.preventDefault();
-				localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
-				window.location.href = recipeLink;
-			}
+			event.preventDefault();
+			localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
+			window.location.href = recipeLink;
+		});
+
+		const imageAnchor = card.querySelector('.card-img a');
+		imageAnchor.addEventListener('click', (event) => {
+			event.preventDefault();
+			localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
+			window.location.href = recipeLink;
 		});
 
 		return card;
@@ -80,5 +87,35 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	loadCustomRecipes();
+
+	const wireBuiltInCards = () => {
+		const recipeCards = recipesContainer.querySelectorAll('.recipe-card');
+		recipeCards.forEach((card) => {
+			const recipeId = card.id;
+			const builtInRecipe = builtInRecipes[recipeId];
+			if (!builtInRecipe) return;
+
+			const viewButton = card.querySelector('.view-recipe-btn');
+			const imageAnchor = card.querySelector('.card-img a');
+
+			if (viewButton) {
+				viewButton.addEventListener('click', (event) => {
+					event.preventDefault();
+					localStorage.setItem('selectedRecipe', JSON.stringify(builtInRecipe));
+					window.location.href = unifiedRecipePage;
+				});
+			}
+
+			if (imageAnchor) {
+				imageAnchor.addEventListener('click', (event) => {
+					event.preventDefault();
+					localStorage.setItem('selectedRecipe', JSON.stringify(builtInRecipe));
+					window.location.href = unifiedRecipePage;
+				});
+			}
+		});
+	};
+
+	wireBuiltInCards();
 	searchButton.addEventListener('click', filterRecipes);
 });

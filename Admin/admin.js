@@ -8,6 +8,8 @@ const recipeYoutubeInput = document.getElementById('recipe-youtube');
 const saveRecipeBtn = document.getElementById('save-recipe-btn');
 const editingRecipeIdInput = document.getElementById('editing-recipe-id');
 const customRecipesList = document.getElementById('custom-recipes-list');
+const builtInRecipes = window.TastyBiteRecipes || {};
+const unifiedRecipePage = '../Recipes Page/All Dishes/dishes.html';
 let editingRecipeId = null;
 
 function createIngredientRow(value = '', name = '') {
@@ -104,7 +106,7 @@ function buildRecipeData() {
         link: youtube,
         ingredients,
         instructions,
-        detailPage: 'newrecipescontainer/newrecipescontainer.html',
+        detailPage: 'All Dishes/dishes.html',
         createdAt: Date.now()
     };
 }
@@ -170,7 +172,7 @@ function createCustomRecipeItem(recipe) {
     nameLink.addEventListener('click', (event) => {
         event.preventDefault();
         localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
-        window.location.href = '../Recipes Page/newrecipescontainer/newrecipescontainer.html';
+        window.location.href = unifiedRecipePage;
     });
 
     editButton.addEventListener('click', () => {
@@ -240,3 +242,27 @@ initialRemoveButtons.forEach(attachRemove);
 updateRemoveButtons(ingredientList);
 updateRemoveButtons(instructionList);
 renderCustomRecipes();
+
+const staticRecipeLinks = document.querySelectorAll('.existing-recipes .recipe-item .recipe-name');
+staticRecipeLinks.forEach((link) => {
+    if (link.closest('.custom-recipe-item')) return;
+
+    const href = (link.getAttribute('href') || '').toLowerCase();
+    let recipeId = '';
+
+    if (href.includes('spaghetticarbonara')) {
+        recipeId = 'spaghetti-carbonara';
+    } else if (href.includes('shawarma')) {
+        recipeId = 'shawarma';
+    } else if (href.includes('tacos')) {
+        recipeId = 'tacos';
+    }
+
+    if (!recipeId || !builtInRecipes[recipeId]) return;
+
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        localStorage.setItem('selectedRecipe', JSON.stringify(builtInRecipes[recipeId]));
+        window.location.href = unifiedRecipePage;
+    });
+});

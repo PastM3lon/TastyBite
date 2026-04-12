@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const adminNavItem = document.querySelector(".admin-link");
 	const currentUserEmail = (localStorage.getItem("currentUserEmail") || "").toLowerCase();
     const favoritesKey = "favoritesList_" + currentUserEmail;
+	const builtInRecipes = window.TastyBiteRecipes || {};
+	const unifiedRecipePage = "../Recipes Page/All Dishes/dishes.html";
 
 	if (adminNavItem && !isAdmin) {
 		adminNavItem.style.display = "none";
@@ -58,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			viewButton.addEventListener('click', () => {
 				localStorage.setItem('selectedRecipe', JSON.stringify(item));
-				window.location.href = '../Recipes Page/newrecipescontainer/newrecipescontainer.html';
+				window.location.href = unifiedRecipePage;
 			});
 
 			removeButton.addEventListener('click', () => {
@@ -96,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	favoriteCards.forEach((card) => {
 		const removeButton = card.querySelector(".remove-favorite");
+		const viewRecipeLink = card.querySelector(".view-recipe-link a");
 
 		removeButton.addEventListener("click", () => {
 			const recipeId = card.id;
@@ -104,6 +107,18 @@ document.addEventListener("DOMContentLoaded", () => {
 			saveFavorites(updatedFavorites);
 			syncFavoritesDisplay();
 		});
+
+		if (viewRecipeLink) {
+			viewRecipeLink.addEventListener("click", (event) => {
+				event.preventDefault();
+				const recipeId = card.id;
+				const selected = builtInRecipes[recipeId];
+				if (selected) {
+					localStorage.setItem("selectedRecipe", JSON.stringify(selected));
+					window.location.href = unifiedRecipePage;
+				}
+			});
+		}
 	});
 
 	syncFavoritesDisplay();
