@@ -189,11 +189,56 @@ nav {
     width: 100%;
 }
 
+.heart-icon {
+    padding-right: 12px;
+}
+
+.remove-favorite {
+    border: none;
+    background: #f4d6d9;
+    color: #9b1c2b;
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.remove-favorite:hover {
+    background: #efbcc3;
+}
+
+.empty-favorites {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 18px;
+    border-radius: 12px;
+    background: #fff;
+    color: #7a6a5c;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
 .back a {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
+}
+.back-btn {
+    width: fit-content;
+    margin: 24px auto 0;
+    padding: 14px 22px;
+    border-radius: 14px;
+    background: #e63946;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 8px 16px rgba(230, 57, 70, 0.22);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #d62839;
+    transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {

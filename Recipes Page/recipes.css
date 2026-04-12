@@ -186,6 +186,10 @@ nav {
     background: #d62839;
 }
 
+.add-fav button.is-favorite {
+    background: #2d1b0e;
+}
+
 /* responsive */
 @media (max-width: 900px) {
     .recipes {

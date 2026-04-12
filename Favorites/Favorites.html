@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Favorite Recipes</title>
     <link rel="stylesheet" href="favorites.css">
+    <script src="favorites.js"></script>
 </head>
 
 <body>
@@ -89,7 +90,7 @@
         </div>
 
         <div class="fav-cards">
-            <div class="fav-recipe">
+            <div class="fav-recipe" id="spaghetti-carbonara" style="display:none">
                 <div class="fav-img">
                     <a href="../SpaghettiCarbonara/SpaghettiCarbonara.html">
                         <img src="https://www.allrecipes.com/thmb/zJzTLhtUWknHXVoFIzysljJ9wR8=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg"
@@ -106,18 +107,14 @@
                         </a>
                     </div>
                     <div class="heart-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red"
-                            class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                        </svg>
+                        <button type="button" class="remove-favorite">Remove</button>
                     </div>
                 </div>
             </div>
 
 
 
-            <div class="fav-recipe">
+            <div class="fav-recipe" id="shawarma" style="display:none">
                 <div class="fav-img">
                     <a href="../Shawarma/Shawarma.html">
                         <img src="https://www.munatycooking.com/wp-content/uploads/2023/12/chicken-shawarma-image-feature-2023.jpg"
@@ -134,11 +131,7 @@
                         </a>
                     </div>
                     <div class="heart-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red"
-                            class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                        </svg>
+                        <button type="button" class="remove-favorite">Remove</button>
                     </div>
                 </div>
 
@@ -146,7 +139,7 @@
 
 
 
-            <div class="fav-recipe">
+            <div class="fav-recipe" id="tacos" style="display:none">
                 <div class="fav-img">
                     <a href="../Tacos/Tacos.html">
                         <img src="https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos-1024x767.jpg"
@@ -163,21 +156,16 @@
                         </a>
                     </div>
                     <div class="heart-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red"
-                            class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                        </svg>
+                        <button type="button" class="remove-favorite">Remove</button>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
+        <p class="empty-favorites" style="display:none">No favorites yet. Add recipes from the recipes page.</p>
 
         <div class="back">
-            <a href="../Recipes Page/Recipes.html">
+            <a class="back-btn" href="../Recipes Page/Recipes.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
