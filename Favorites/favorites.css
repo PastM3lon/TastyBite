@@ -180,7 +180,7 @@ nav {
     transition: 0.3s;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #d62839;
 }
 
@@ -224,7 +224,6 @@ nav {
     align-items: center;
     gap: 8px;
 }
-
 .back-btn {
     width: fit-content;
     margin: 24px auto 0;
@@ -240,4 +239,16 @@ nav {
 .back-btn:hover {
     background: #d62839;
     transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+    .fav-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .fav-cards {
+        grid-template-columns: 1fr;
+    }
 }
