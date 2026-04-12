@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const isAdmin = localStorage.getItem("isAdmin") === "true";
 	const adminNavItem = document.querySelector(".admin-link");
+	const currentUserEmail = (localStorage.getItem("currentUserEmail")).toLowerCase();
+    const favoritesKey = "favoritesList_" + currentUserEmail;
 
 	if (adminNavItem && !isAdmin) {
 		adminNavItem.style.display = "none";
 	}
 
 	const getFavorites = () => {
-		const favStored = localStorage.getItem("favoritesList");
+		const favStored = localStorage.getItem(favoritesKey);
 
 		if (!favStored) {
 			return [];
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	const saveFavorites = (favorites) => {
-		localStorage.setItem("favoritesList", JSON.stringify(favorites));
+		localStorage.setItem(favoritesKey, JSON.stringify(favorites));
 	};
 
 	const favoriteCards = document.querySelectorAll(".fav-recipe");
