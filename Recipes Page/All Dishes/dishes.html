@@ -23,18 +23,326 @@
                 </a>
             </div>
             <div class="nav-links">
-                <div class="home-link link"><a href="../Recipes.html"><span>Home</span></a></div>
-                <div class="search-link link"><a href="../../Search/search.html"><span>Search</span></a></div>
-                <div class="favorites-link link"><a href="../../Favorites/Favorites.html"><span>Favorites</span></a></div>
-                <div class="admin-link link"><a href="../../Admin/Admin.html"><span>Admin</span></a></div>
-                <div class="logout-link link"><a href="../../Welcome Page/Welcome.html" id="logoutLink"><span>Logout</span></a></div>
+                <div class="home-link link">
+                    <a href="../Recipes.html">
+                        <svg id="homeicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                            width="24px" fill="#e3e3e3">
+                            <path
+                                d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                        </svg>
+                        <span>Home</span>
+                    </a>
+                </div>
+                <div class="search-link link">
+                    <a href="../../Search/search.html">
+                        <svg id="searchicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                            width="24px" fill="#e3e3e3">
+                            <path
+                                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                        </svg>
+                        <span>Search</span>
+                    </a>
+                </div>
+                <div class="favorites-link link">
+                    <a href="../../Favorites/Favorites.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#e3e3e3">
+                            <path
+                                d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" />
+                        </svg>
+                        <span>Favorites</span>
+                    </a>
+                </div>
+                <div class="admin-link link">
+                    <a href="../../Admin/Admin.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M722.5-297.5Q740-315 740-340t-17.5-42.5Q705-400 680-400t-42.5 17.5Q620-365 620-340t17.5 42.5Q655-280 680-280t42.5-17.5ZM680-160q31 0 57-14.5t42-38.5q-22-13-47-20t-52-7q-27 0-52 7t-47 20q16 24 42 38.5t57 14.5ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v227q-19-8-39-14.5t-41-9.5v-147l-240-90-240 90v188q0 47 12.5 94t35 89.5Q310-290 342-254t71 60q11 32 29 61t41 52q-1 0-1.5.5t-1.5.5Zm200 0q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80ZM480-494Z" />
+                        </svg>
+                        <span>Admin Panel</span>
+                    </a>
+                </div>
+                <div class="logout-link link">
+                    <a href="../../Welcome Page/Welcome.html" id="logoutLink">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M600-120v-80h160v-560H600v-80h160q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H600Zm-80-160-56-56 104-104H120v-80h448L464-624l56-56 200 200-200 200Z" />
+                        </svg>
+                        <span>Logout</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
     <main class="dish-page">
-        <section class="dish-hero" id="dish-hero"></section>
-        <section class="dish-detail" id="recipe-detail"></section>
+        <section class="dish-views" id="dishViews">
+            <div class="dish-view" id="dish-spaghetti-carbonara" style="display: none;">
+                <section class="dish-hero">
+                    <h1 class="dish-title">Spaghetti Carbonara</h1>
+                    <p class="dish-summary">A creamy Roman pasta made with eggs, cheese, pancetta, and black pepper.</p>
+                </section>
+                <section class="dish-detail">
+                    <div class="dish-detail-grid">
+                        <article class="panel">
+                            <h2>Ingredients</h2>
+                            <ul class="ingredients-list">
+                                <li>160-220 g spaghetti</li>
+                                <li>75 g pancetta or guanciale (or bacon), chopped</li>
+                                <li>1 garlic clove</li>
+                                <li>1 egg (or 2 egg yolks)</li>
+                                <li>25-50 g pecorino or parmesan cheese, grated</li>
+                                <li>black pepper</li>
+                                <li>salt (for pasta water)</li>
+                            </ul>
+                        </article>
+                        <article class="panel">
+                            <h2>Instructions</h2>
+                            <ol class="instructions-list">
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 1</div>
+                                        <div class="step-body">Bring a pot of salted water to a boil and cook the spaghetti until al dente.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 2</div>
+                                        <div class="step-body">In a bowl, whisk the egg with the grated cheese and black pepper.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 3</div>
+                                        <div class="step-body">Place pancetta and garlic in a cold pan, then heat on medium.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 4</div>
+                                        <div class="step-body">Cook until pancetta is crisp and has released its fat.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 5</div>
+                                        <div class="step-body">Remove garlic, add cooked spaghetti, and toss well.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 6</div>
+                                        <div class="step-body">Add a splash of pasta water for silkiness.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 7</div>
+                                        <div class="step-body">Turn off heat, add egg-cheese mixture, and toss quickly.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 8</div>
+                                        <div class="step-body">Serve immediately with extra cheese and pepper.</div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <div class="dish-view" id="dish-shawarma" style="display: none;">
+                <section class="dish-hero">
+                    <h1 class="dish-title">Shawarma</h1>
+                    <p class="dish-summary">Juicy spiced chicken wrapped in warm pita with fresh vegetables and sauce.</p>
+                </section>
+                <section class="dish-detail">
+                    <div class="dish-detail-grid">
+                        <article class="panel">
+                            <h2>Ingredients</h2>
+                            <ul class="ingredients-list">
+                                <li>1 kg boneless chicken thighs (or breasts)</li>
+                                <li>3 tbsp olive oil</li>
+                                <li>2 tbsp lemon juice</li>
+                                <li>3-4 cloves garlic, minced</li>
+                                <li>1 tbsp ground cumin</li>
+                                <li>1 tbsp paprika</li>
+                                <li>1/2 tsp turmeric powder</li>
+                                <li>salt and black pepper</li>
+                                <li>6 pita breads (or wraps)</li>
+                                <li>fresh vegetables (lettuce, tomato, cucumber)</li>
+                                <li>garlic sauce or tahini (optional)</li>
+                            </ul>
+                        </article>
+                        <article class="panel">
+                            <h2>Instructions</h2>
+                            <ol class="instructions-list">
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 1</div>
+                                        <div class="step-body">Mix olive oil, lemon juice, garlic, cumin, paprika, turmeric, salt, and pepper.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 2</div>
+                                        <div class="step-body">Add chicken and coat thoroughly in the marinade.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 3</div>
+                                        <div class="step-body">Cover and chill at least 1 hour (overnight is best).</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 4</div>
+                                        <div class="step-body">Cook in oven or skillet until chicken is fully done.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 5</div>
+                                        <div class="step-body">Slice chicken into thin strips.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 6</div>
+                                        <div class="step-body">Warm pita breads or wraps.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 7</div>
+                                        <div class="step-body">Assemble with sauce, chicken, and vegetables.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 8</div>
+                                        <div class="step-body">Fold and serve warm.</div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <div class="dish-view" id="dish-tacos" style="display: none;">
+                <section class="dish-hero">
+                    <h1 class="dish-title">Tacos</h1>
+                    <p class="dish-summary">Tender beef tacos with bold chili flavors, served with lime and fresh herbs.</p>
+                </section>
+                <section class="dish-detail">
+                    <div class="dish-detail-grid">
+                        <article class="panel">
+                            <h2>Ingredients</h2>
+                            <ul class="ingredients-list">
+                                <li>800 g beef chuck (or short ribs)</li>
+                                <li>1 dried guajillo chili</li>
+                                <li>1 dried ancho chili</li>
+                                <li>3 cloves garlic</li>
+                                <li>1 small onion</li>
+                                <li>1 tbsp ground cumin</li>
+                                <li>1 tbsp dried oregano</li>
+                                <li>1 tsp smoked paprika</li>
+                                <li>1 bay leaf</li>
+                                <li>500 ml beef broth</li>
+                                <li>salt and black pepper</li>
+                                <li>tortillas (corn or flour)</li>
+                                <li>chopped cilantro and lime wedges</li>
+                                <li>shredded cheese (optional)</li>
+                            </ul>
+                        </article>
+                        <article class="panel">
+                            <h2>Instructions</h2>
+                            <ol class="instructions-list">
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 1</div>
+                                        <div class="step-body">Soak dried chilis in hot water until softened.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 2</div>
+                                        <div class="step-body">Blend chilis with garlic, onion, cumin, oregano, paprika, and broth.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 3</div>
+                                        <div class="step-body">Season beef and place in pot or slow cooker.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 4</div>
+                                        <div class="step-body">Add chili sauce, bay leaf, and remaining broth.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 5</div>
+                                        <div class="step-body">Simmer until beef is tender and shreddable.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 6</div>
+                                        <div class="step-body">Shred beef with two forks.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 7</div>
+                                        <div class="step-body">Warm tortillas and fill with beef and toppings.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="step-dot" aria-hidden="true"></span>
+                                    <div>
+                                        <div class="step-title">Step 8</div>
+                                        <div class="step-body">Serve with lime and fresh cilantro.</div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </section>
+        <p class="no-recipe" id="noRecipeMessage" style="display: none;">Choose a recipe from Home, Search, or Favorites to view it here.</p>
     </main>
 </body>
 </html>
