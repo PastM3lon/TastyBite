@@ -4,7 +4,7 @@ const addInstructionBtn = document.getElementById('add-instruction-btn');
 const instructionList = document.getElementById('instructions-list');
 const recipeNameInput = document.getElementById('recipe-name');
 const recipeImageInput = document.getElementById('recipe-image');
-const recipeYoutubeInput = document.getElementById('recipe-youtube');
+const recipeSummaryInput = document.getElementById('recipe-summary');
 const saveRecipeBtn = document.getElementById('save-recipe-btn');
 const editingRecipeIdInput = document.getElementById('editing-recipe-id');
 const customRecipesList = document.getElementById('custom-recipes-list');
@@ -88,10 +88,33 @@ function saveCustomRecipes(recipes) {
     localStorage.setItem('customRecipes', JSON.stringify(recipes));
 }
 
+function getFavoritesKeys() {
+    return Object.keys(localStorage).filter((key) => key.startsWith('favoritesList_'));
+}
+
+function removeRecipeFromFavorites(recipeId) {
+    getFavoritesKeys().forEach((key) => {
+        const stored = localStorage.getItem(key);
+        if (!stored) return;
+
+        try {
+            const favorites = JSON.parse(stored);
+            if (!Array.isArray(favorites)) return;
+
+            const updatedFavorites = favorites.filter((item) => item.id !== recipeId);
+            if (updatedFavorites.length !== favorites.length) {
+                localStorage.setItem(key, JSON.stringify(updatedFavorites));
+            }
+        } catch (error) {
+            return;
+        }
+    });
+}
+
 function buildRecipeData() {
     const name = recipeNameInput.value.trim();
     const image = recipeImageInput.value.trim();
-    const youtube = recipeYoutubeInput.value.trim();
+    const summary = recipeSummaryInput.value.trim();
     const ingredients = Array.from(ingredientList.querySelectorAll('.ingredient-row')).map(row => ({
         quantity: row.querySelector('.qty').value.trim(),
         ingredient: row.querySelector('.name').value.trim()
@@ -103,7 +126,7 @@ function buildRecipeData() {
         title: name,
         name,
         image,
-        link: youtube,
+        summary,
         ingredients,
         instructions,
         detailPage: 'All Dishes/dishes.html',
@@ -117,7 +140,7 @@ function resetForm() {
     saveRecipeBtn.textContent = 'Add Recipe';
     recipeNameInput.value = '';
     recipeImageInput.value = '';
-    recipeYoutubeInput.value = '';
+    recipeSummaryInput.value = '';
     ingredientList.innerHTML = '';
     ingredientList.appendChild(createIngredientRow());
     instructionList.innerHTML = '';
@@ -132,7 +155,7 @@ function populateForm(recipe) {
     saveRecipeBtn.textContent = 'Update Recipe';
     recipeNameInput.value = recipe.name;
     recipeImageInput.value = recipe.image;
-    recipeYoutubeInput.value = recipe.link || '';
+    recipeSummaryInput.value = recipe.summary || recipe.link || '';
     ingredientList.innerHTML = '';
     if (recipe.ingredients && recipe.ingredients.length) {
         recipe.ingredients.forEach(item => {
@@ -183,6 +206,7 @@ function createCustomRecipeItem(recipe) {
     deleteButton.addEventListener('click', () => {
         const recipes = getCustomRecipes().filter(item => item.id !== recipe.id);
         saveCustomRecipes(recipes);
+        removeRecipeFromFavorites(recipe.id);
         renderCustomRecipes();
         if (editingRecipeId === recipe.id) {
             resetForm();
