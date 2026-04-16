@@ -93,7 +93,23 @@ document.addEventListener("DOMContentLoaded", () => {
 		recipeCards.forEach((card) => {
 			const recipeId = card.id;
 			const builtInRecipe = builtInRecipes[recipeId];
-			if (!builtInRecipe) return;
+
+			const buildSelectedRecipe = () => {
+				if (builtInRecipe) return builtInRecipe;
+
+				const title = card.querySelector('.card-p p')?.textContent.trim() || 'Recipe';
+				const image = card.querySelector('.card-img img')?.getAttribute('src') || '';
+				const ingredientPreview = card.querySelector('.ingredient-preview')?.textContent.trim() || '';
+
+				return {
+					id: recipeId,
+					title,
+					image,
+					ingredients: ingredientPreview
+						? ingredientPreview.split(',').map((item) => ({ ingredient: item.trim() })).filter((item) => item.ingredient)
+						: []
+				};
+			};
 
 			const viewButton = card.querySelector('.view-recipe-btn');
 			const imageAnchor = card.querySelector('.card-img a');
@@ -101,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (viewButton) {
 				viewButton.addEventListener('click', (event) => {
 					event.preventDefault();
-					localStorage.setItem('selectedRecipe', JSON.stringify(builtInRecipe));
+					localStorage.setItem('selectedRecipe', JSON.stringify(buildSelectedRecipe()));
 					window.location.href = unifiedRecipePage;
 				});
 			}
@@ -109,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (imageAnchor) {
 				imageAnchor.addEventListener('click', (event) => {
 					event.preventDefault();
-					localStorage.setItem('selectedRecipe', JSON.stringify(builtInRecipe));
+					localStorage.setItem('selectedRecipe', JSON.stringify(buildSelectedRecipe()));
 					window.location.href = unifiedRecipePage;
 				});
 			}
