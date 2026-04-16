@@ -1,14 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const isAdmin = localStorage.getItem("isAdmin") === "true";
-	const adminNavItem = document.querySelector(".admin-link");
 	const currentUserEmail = (localStorage.getItem("currentUserEmail") || "").toLowerCase();
     const favoritesKey = "favoritesList_" + currentUserEmail;
 	const builtInRecipes = window.TastyBiteRecipes || {};
 	const unifiedRecipePage = "../Recipes Page/All Dishes/dishes.html";
-
-	if (adminNavItem && !isAdmin) {
-		adminNavItem.style.display = "none";
-	}
 
 	const getFavorites = () => {
 		const favStored = localStorage.getItem(favoritesKey);
