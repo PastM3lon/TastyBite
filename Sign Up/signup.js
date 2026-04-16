@@ -4,7 +4,7 @@ function accountSubmit() {
     const passwordInput = document.getElementById("signUpPassword");
     const confirmPasswordInput = document.getElementById("signUpConfirmPassword");
     const adminCheckbox = document.getElementById("signUpIsAdmin");
-    const message = document.getElementById("signupMessage");
+    const message = document.getElementById("signupMessage");   
 
     const fullName = nameInput.value.trim();
     const email = emailInput.value.trim().toLowerCase();

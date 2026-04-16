@@ -7,10 +7,4 @@ document.addEventListener("DOMContentLoaded", () => {
             item.style.display = "none";
         }
     });
-
-    const isAdminPage = window.location.pathname.toLowerCase().includes("/admin/admin.html");
-    if (isAdminPage && !isAdmin) {
-        window.location.href = "../Recipes Page/Recipes.html";
-        return;
-    }
 });
