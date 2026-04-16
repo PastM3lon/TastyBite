@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const card = document.createElement('div');
 		card.className = 'recipe-card';
 		card.id = recipe.id;
+		card.dataset.recipeObject = JSON.stringify(recipe);
 		const ingredientPreview = Array.isArray(recipe.ingredients)
 			? recipe.ingredients.map(i => i.ingredient || i.quantity || '').filter(Boolean).join(', ')
 			: '';
@@ -95,6 +96,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			const builtInRecipe = builtInRecipes[recipeId];
 
 			const buildSelectedRecipe = () => {
+				if (card.dataset.recipeObject) {
+					try {
+						return JSON.parse(card.dataset.recipeObject);
+					} catch (error) {
+					}
+				}
+
 				if (builtInRecipe) return builtInRecipe;
 
 				const title = card.querySelector('.card-p p')?.textContent.trim() || 'Recipe';
