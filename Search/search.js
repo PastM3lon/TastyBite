@@ -4,17 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	const searchButton = document.getElementById("searchButton");
 	const noResultsMessage = document.getElementById("noResultsMessage");
 	const recipesContainer = document.querySelector(".recipes");
-	const builtInRecipes = window.TastyBiteRecipes || {};
+
 	const unifiedRecipePage = "../Recipes Page/All Dishes/dishes.html";
 
 	const getCustomRecipes = () => {
 		const stored = localStorage.getItem('customRecipes');
-		if (!stored) return [];
-		try {
-			return JSON.parse(stored);
-		} catch (error) {
-			return [];
-		}
+		return stored ? JSON.parse(stored) : [];
 	};
 
 	const createRecipeCard = (recipe) => {
@@ -23,14 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		card.id = recipe.id;
 		card.dataset.recipeObject = JSON.stringify(recipe);
 		const ingredientPreview = Array.isArray(recipe.ingredients)
-			? recipe.ingredients.map(i => i.ingredient || i.quantity || '').filter(Boolean).join(', ')
+			? recipe.ingredients.map(i => i.ingredient || '').join(', ')
 			: '';
-		const recipeLink = unifiedRecipePage;
 
 		card.innerHTML = `
 			<div class="card-img">
-				<a href="${recipeLink}" rel="noreferrer">
-					<img src="${recipe.image}" width="400" height="300" alt="${recipe.title || recipe.name}">
+				<a href="${unifiedRecipePage}">
+					<img src="${recipe.image}" width="400" height="300">
 				</a>
 			</div>
 			<div class="card-p">
@@ -38,108 +32,83 @@ document.addEventListener("DOMContentLoaded", () => {
 				<span class="ingredient-preview">${ingredientPreview}</span>
 			</div>
 			<div class="add-fav">
-				<a class="view-recipe-btn" href="${recipeLink}">View Recipe</a>
+				<a class="view-recipe-btn" href="${unifiedRecipePage}">View Recipe</a>
 			</div>
 		`;
 
-		const viewBtn = card.querySelector('.view-recipe-btn');
-		viewBtn.addEventListener('click', (event) => {
-			event.preventDefault();
+		const goToRecipe = (e) => {
+			e.preventDefault();
 			localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
-			window.location.href = recipeLink;
-		});
+			window.location.href = unifiedRecipePage;
+		};
 
-		const imageAnchor = card.querySelector('.card-img a');
-		imageAnchor.addEventListener('click', (event) => {
-			event.preventDefault();
-			localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
-			window.location.href = recipeLink;
-		});
+		card.querySelector('.view-recipe-btn').addEventListener('click', goToRecipe);
+		card.querySelector('.card-img a').addEventListener('click', goToRecipe);
 
 		return card;
 	};
 
 	const loadCustomRecipes = () => {
-		const customRecipes = getCustomRecipes();
-		customRecipes.forEach(recipe => {
+		getCustomRecipes().forEach(recipe => {
 			recipesContainer.appendChild(createRecipeCard(recipe));
 		});
 	};
 
 	const filterRecipes = () => {
-		const dish = dishSearchInput.value.trim().toLowerCase();
-		const ingredient = ingredientSearchInput.value.trim().toLowerCase();
-		const recipeCards = recipesContainer.querySelectorAll('.recipe-card');
+		const dish = dishSearchInput.value.toLowerCase();
+		const ingredient = ingredientSearchInput.value.toLowerCase();
+
 		let visible = 0;
 
-		recipeCards.forEach((card) => {
-			const dishName = card.querySelector('.card-p p')?.textContent.trim().toLowerCase() || '';
-			const ingredientName = card.querySelector('.ingredient-preview')?.textContent.trim().toLowerCase() || '';
+		recipesContainer.querySelectorAll('.recipe-card').forEach((card) => {
+			const dishName = card.querySelector('.card-p p').textContent.toLowerCase();
+			const ingredientName = card.querySelector('.ingredient-preview').textContent.toLowerCase();
 
-			const matchesDish = !dish || dishName.includes(dish);
-			const matchesIngredient = !ingredient || ingredientName.includes(ingredient);
-			const isVisible = matchesDish && matchesIngredient;
+			const isVisible =
+				(!dish || dishName.includes(dish)) &&
+				(!ingredient || ingredientName.includes(ingredient));
 
 			card.style.display = isVisible ? 'block' : 'none';
-			if (isVisible) visible += 1;
+			if (isVisible) visible++;
 		});
 
 		noResultsMessage.style.display = visible === 0 ? 'block' : 'none';
 	};
 
-	loadCustomRecipes();
-
 	const wireBuiltInCards = () => {
-		const recipeCards = recipesContainer.querySelectorAll('.recipe-card');
-		recipeCards.forEach((card) => {
-			const recipeId = card.id;
-			const builtInRecipe = builtInRecipes[recipeId];
-
+		recipesContainer.querySelectorAll('.recipe-card').forEach((card) => {
 			const buildSelectedRecipe = () => {
 				if (card.dataset.recipeObject) {
-					try {
-						return JSON.parse(card.dataset.recipeObject);
-					} catch (error) {
-					}
+					return JSON.parse(card.dataset.recipeObject);
 				}
 
-				if (builtInRecipe) return builtInRecipe;
-
-				const title = card.querySelector('.card-p p')?.textContent.trim() || 'Recipe';
-				const image = card.querySelector('.card-img img')?.getAttribute('src') || '';
-				const ingredientPreview = card.querySelector('.ingredient-preview')?.textContent.trim() || '';
+				const title = card.querySelector('.card-p p').textContent.trim();
+				const image = card.querySelector('.card-img img').getAttribute('src');
+				const ingredientPreview = card.querySelector('.ingredient-preview').textContent;
 
 				return {
-					id: recipeId,
+					id: card.id,
 					title,
 					image,
 					ingredients: ingredientPreview
-						? ingredientPreview.split(',').map((item) => ({ ingredient: item.trim() })).filter((item) => item.ingredient)
-						: []
+						.split(',')
+						.map(i => ({ ingredient: i.trim() }))
+						.filter(i => i.ingredient)
 				};
 			};
 
-			const viewButton = card.querySelector('.view-recipe-btn');
-			const imageAnchor = card.querySelector('.card-img a');
+			const goToRecipe = (e) => {
+				e.preventDefault();
+				localStorage.setItem('selectedRecipe', JSON.stringify(buildSelectedRecipe()));
+				window.location.href = unifiedRecipePage;
+			};
 
-			if (viewButton) {
-				viewButton.addEventListener('click', (event) => {
-					event.preventDefault();
-					localStorage.setItem('selectedRecipe', JSON.stringify(buildSelectedRecipe()));
-					window.location.href = unifiedRecipePage;
-				});
-			}
-
-			if (imageAnchor) {
-				imageAnchor.addEventListener('click', (event) => {
-					event.preventDefault();
-					localStorage.setItem('selectedRecipe', JSON.stringify(buildSelectedRecipe()));
-					window.location.href = unifiedRecipePage;
-				});
-			}
+			card.querySelector('.view-recipe-btn').addEventListener('click', goToRecipe);
+			card.querySelector('.card-img a').addEventListener('click', goToRecipe);
 		});
 	};
 
+	loadCustomRecipes();
 	wireBuiltInCards();
 	searchButton.addEventListener('click', filterRecipes);
 });
