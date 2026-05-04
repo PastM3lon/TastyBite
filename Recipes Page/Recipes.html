@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="recipes.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <script src="../common/nav.js" defer></script>
+    <script src="recipes.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-log">
+                <a class="brand" href="../Recipes Page/Recipes.html">
+                    <svg id="logo" viewBox="0 0 24 24">
+                        <path
+                            d="M7.25285 4.25547C8.09403 2.47951 9.90263 1.25 12 1.25C14.0974 1.25 15.906 2.47951 16.7471 4.25547C16.831 4.25184 16.9153 4.25 17 4.25C20.1756 4.25 22.75 6.82436 22.75 10C22.75 12.1806 21.5363 14.0762 19.75 15.0508L19.75 18.052C19.75 18.9505 19.7501 19.6997 19.6701 20.2945C19.5857 20.9223 19.4 21.4891 18.9445 21.9445C18.4891 22.4 17.9223 22.5857 17.2945 22.6701C16.6997 22.7501 15.9505 22.75 15.052 22.75H8.94801C8.04952 22.75 7.3003 22.7501 6.70552 22.6701C6.07773 22.5857 5.51093 22.4 5.05546 21.9445C4.59999 21.4891 4.41432 20.9223 4.32991 20.2945C4.24994 19.6997 4.24997 18.9505 4.25 18.052L4.25 15.0508C2.46371 14.0762 1.25 12.1806 1.25 10C1.25 6.82436 3.82436 4.25 7 4.25C7.08469 4.25 7.16899 4.25184 7.25285 4.25547ZM6.80262 5.7545C4.54704 5.85762 2.75 7.71895 2.75 10C2.75 11.7416 3.79769 13.2402 5.30028 13.8967C5.57345 14.016 5.75 14.2859 5.75 14.584V17.25H18.25L18.25 14.584C18.25 14.2859 18.4265 14.016 18.6997 13.8967C20.2023 13.2402 21.25 11.7416 21.25 10C21.25 7.71895 19.453 5.85761 17.1974 5.7545C17.2321 5.99825 17.25 6.24718 17.25 6.5V7C17.25 7.41421 16.9142 7.75 16.5 7.75C16.0858 7.75 15.75 7.41421 15.75 7V6.5C15.75 6.07715 15.6803 5.67212 15.5524 5.29486C15.0502 3.81402 13.6484 2.75 12 2.75C10.3516 2.75 8.94981 3.81402 8.44763 5.29486C8.3197 5.67212 8.25 6.07715 8.25 6.5V7C8.25 7.41421 7.91421 7.75 7.5 7.75C7.08579 7.75 6.75 7.41421 6.75 7V6.5C6.75 6.24717 6.76792 5.99825 6.80262 5.7545ZM18.2482 18.75H5.75181C5.75604 19.3194 5.77008 19.7491 5.81654 20.0946C5.87858 20.5561 5.9858 20.7536 6.11612 20.8839C6.24643 21.0142 6.44393 21.1214 6.90539 21.1835C7.38843 21.2484 8.03599 21.25 9 21.25H15C15.964 21.25 16.6116 21.2484 17.0946 21.1835C17.5561 21.1214 17.7536 21.0142 17.8839 20.8839C18.0142 20.7536 18.1214 20.5561 18.1835 20.0946C18.2299 19.7491 18.244 19.3194 18.2482">
+                        </path>
+                    </svg>
+                    <span class="brand-name">TastyBite</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <div class="home-link link">
+                    <a href="../Recipes Page/Recipes.html">
+                        <svg id="homeicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                            width="24px" fill="#e3e3e3">
+                            <path
+                                d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                        </svg>
+                        <span>Home</span>
+                    </a>
+                </div>
+                <div class="search-link link">
+                    <a href="../Search/Search.html">
+                        <svg id="searchicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                            width="24px" fill="#e3e3e3">
+                            <path
+                                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                        </svg>
+                        <span>Search</span>
+                    </a>
+                </div>
+                <div class="favorites-link link">
+                    <a href="../Favorites/Favorites.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#e3e3e3">
+                            <path
+                                d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" />
+                        </svg>
+                        <span>Favorites</span>
+                    </a>
+                </div>
+                <div class="admin-link link">
+                    <a href="../Admin/Admin.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M722.5-297.5Q740-315 740-340t-17.5-42.5Q705-400 680-400t-42.5 17.5Q620-365 620-340t17.5 42.5Q655-280 680-280t42.5-17.5ZM680-160q31 0 57-14.5t42-38.5q-22-13-47-20t-52-7q-27 0-52 7t-47 20q16 24 42 38.5t57 14.5ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v227q-19-8-39-14.5t-41-9.5v-147l-240-90-240 90v188q0 47 12.5 94t35 89.5Q310-290 342-254t71 60q11 32 29 61t41 52q-1 0-1.5.5t-1.5.5Zm200 0q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80ZM480-494Z" />
+                        </svg>
+                        <span>Admin Panel</span>
+                    </a>
+                </div>
+                <div class="logout-link link">
+                    <a href="../Welcome Page/Welcome.html" id="logoutLink">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#e3e3e3">
+                            <path
+                                d="M600-120v-80h160v-560H600v-80h160q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H600Zm-80-160-56-56 104-104H120v-80h448L464-624l56-56 200 200-200 200Z" />
+                        </svg>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="home">
+
+        <div class="home-title">
+            <div class="home-header">
+                <h1>Recipes</h1>
+            </div>
+            <div class="home-p">
+                <p>Here you can find various dishes and explore their recipes.</p>
+            </div>
+        </div>
+
+
+        <div class="recipes">
+            <div class="recipe-card" id="spaghetti-carbonara">
+                <div class="card-img">
+                    <a href="../Recipes Page/All Dishes/dishes.html">
+                        <img src="https://www.allrecipes.com/thmb/zJzTLhtUWknHXVoFIzysljJ9wR8=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg"
+                            width="400" height="300">
+                    </a>
+                </div>
+                <div class="card-p">
+                    <p>Spaghetti Carbonara</p>
+                    <span class="ingredient-preview">Spaghetti, pancetta, egg, parmesan</span>
+                </div>
+                <div class="add-fav">
+                    <button class="favorite-btn" type="button">Add to Favorites</button>
+                </div>
+            </div>
+            <div class="recipe-card" id="shawarma">
+                <div class="card-img">
+                    <a href="../Recipes Page/All Dishes/dishes.html">
+                        <img src="https://www.munatycooking.com/wp-content/uploads/2023/12/chicken-shawarma-image-feature-2023.jpg"
+                            width="400" height="300">
+                    </a>
+                </div>
+                <div class="card-p">
+                    <p>Shawarma</p>
+                    <span class="ingredient-preview">Chicken, garlic, cumin, pita bread</span>
+                </div>
+                <div class="add-fav">
+                    <button class="favorite-btn" type="button">Add to Favorites</button>
+                </div>
+            </div>
+
+
+            <div class="recipe-card" id="tacos">
+                <div class="card-img">
+                    <a href="../Recipes Page/All Dishes/dishes.html">
+                        <img src="https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos-1024x767.jpg"
+                            width="400" height="300">
+                    </a>
+                </div>
+                <div class="card-p">
+                    <p>Tacos</p>
+                    <span class="ingredient-preview">Beef, chili, tortillas, lime</span>
+                </div>
+                <div class="add-fav">
+                    <button class="favorite-btn" type="button">Add to Favorites</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="nav-log">
+                <a class="brand" href="../Recipes Page/Recipes.html">
+                    <svg id="logo" viewBox="0 0 24 24">
+                        <path
+                            d="M7.25285 4.25547C8.09403 2.47951 9.90263 1.25 12 1.25C14.0974 1.25 15.906 2.47951 16.7471 4.25547C16.831 4.25184 16.9153 4.25 17 4.25C20.1756 4.25 22.75 6.82436 22.75 10C22.75 12.1806 21.5363 14.0762 19.75 15.0508L19.75 18.052C19.75 18.9505 19.7501 19.6997 19.6701 20.2945C19.5857 20.9223 19.4 21.4891 18.9445 21.9445C18.4891 22.4 17.9223 22.5857 17.2945 22.6701C16.6997 22.7501 15.9505 22.75 15.052 22.75H8.94801C8.04952 22.75 7.3003 22.7501 6.70552 22.6701C6.07773 22.5857 5.51093 22.4 5.05546 21.9445C4.59999 21.4891 4.41432 20.9223 4.32991 20.2945C4.24994 19.6997 4.24997 18.9505 4.25 18.052L4.25 15.0508C2.46371 14.0762 1.25 12.1806 1.25 10C1.25 6.82436 3.82436 4.25 7 4.25C7.08469 4.25 7.16899 4.25184 7.25285 4.25547ZM6.80262 5.7545C4.54704 5.85762 2.75 7.71895 2.75 10C2.75 11.7416 3.79769 13.2402 5.30028 13.8967C5.57345 14.016 5.75 14.2859 5.75 14.584V17.25H18.25L18.25 14.584C18.25 14.2859 18.4265 14.016 18.6997 13.8967C20.2023 13.2402 21.25 11.7416 21.25 10C21.25 7.71895 19.453 5.85761 17.1974 5.7545C17.2321 5.99825 17.25 6.24718 17.25 6.5V7C17.25 7.41421 16.9142 7.75 16.5 7.75C16.0858 7.75 15.75 7.41421 15.75 7V6.5C15.75 6.07715 15.6803 5.67212 15.5524 5.29486C15.0502 3.81402 13.6484 2.75 12 2.75C10.3516 2.75 8.94981 3.81402 8.44763 5.29486C8.3197 5.67212 8.25 6.07715 8.25 6.5V7C8.25 7.41421 7.91421 7.75 7.5 7.75C7.08579 7.75 6.75 7.41421 6.75 7V6.5C6.75 6.24717 6.76792 5.99825 6.80262 5.7545ZM18.2482 18.75H5.75181C5.75604 19.3194 5.77008 19.7491 5.81654 20.0946C5.87858 20.5561 5.9858 20.7536 6.11612 20.8839C6.24643 21.0142 6.44393 21.1214 6.90539 21.1835C7.38843 21.2484 8.03599 21.25 9 21.25H15C15.964 21.25 16.6116 21.2484 17.0946 21.1835C17.5561 21.1214 17.7536 21.0142 17.8839 20.8839C18.0142 20.7536 18.1214 20.5561 18.1835 20.0946C18.2299 19.7491 18.244 19.3194 18.2482">
+                        </path>
+                    </svg>
+                    <span class="brand-name">TastyBite</span>
+                </a>
+            </div>
+            <div class="footer-p">
+                <p>© 2026 TastyBite. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

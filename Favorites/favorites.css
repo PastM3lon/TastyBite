@@ -1,0 +1,281 @@
+/* general style */
+:root {
+    --accent: #e63946;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f6f0;
+    color: #1a1a1a;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* navbar style */
+
+nav {
+    padding: 25px 0;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-log {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-links .link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+}
+
+.nav-links svg {
+    fill: #333;
+}
+
+.nav-links a:hover {
+    color: #e63946;
+}
+
+.nav-links a:hover svg {
+    fill: #e63946;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.brand-name {
+    margin-top: 1px;
+    font-size: 24px;
+    color: #2d1b0e;
+    font-weight: 600;
+}
+
+#logo {
+    width: 34px;
+    height: 34px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex: 0 0 auto;
+}
+
+/* favorite page */
+
+.fav-page {
+    padding: 10rem 0;
+    text-align: center;
+}
+
+.fav-header h1 {
+    font-size: 45px;
+    line-height: 60px;
+    font-weight: 800;
+    color: #2d1b0e;
+}
+
+.fav-p p {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #7a6a5c;
+    margin-top: 1rem;
+}
+
+.fav-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 40px;
+}
+
+.fav-recipe,
+.recipe-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.fav-recipe:hover,
+.recipe-card:hover {
+    transform: translateY(-8px) scale(1.05);
+}
+
+.fav-img img,
+.card-img img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    height: 300px;
+}
+
+.fav-recipe-header,
+.card-p {
+    padding: 20px 15px 10px;
+}
+
+.fav-recipe-header h2,
+.card-p p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
+.card-footer {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 20px;
+}
+
+.btn,
+.view-recipe-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    background: #E63946;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover,
+.view-recipe-btn:hover {
+    background-color: #d62839;
+}
+
+.view-recipe-link {
+    padding: 20px;
+    width: 100%;
+}
+
+.heart-icon {
+    padding-right: 12px;
+}
+
+@media (max-width: 900px) {
+    .fav-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .fav-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.remove-favorite {
+    border: none;
+    background: #f4d6d9;
+    color: #9b1c2b;
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.remove-favorite:hover {
+    background: #efbcc3;
+}
+
+.empty-favorites {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 18px;
+    border-radius: 12px;
+    background: #fff;
+    color: #7a6a5c;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.back a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-btn {
+    width: fit-content;
+    margin: 24px auto 0;
+    padding: 14px 22px;
+    border-radius: 14px;
+    background: #e63946;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 8px 16px rgba(230, 57, 70, 0.22);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #d62839;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+    .fav-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .fav-cards {
+        grid-template-columns: 1fr;
+    }
+}
