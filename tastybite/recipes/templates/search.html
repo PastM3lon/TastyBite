@@ -1,0 +1,214 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+
+{% block title %}Search — TastyBite{% endblock %}
+
+{% block extra_css %}
+.search-page {
+    padding: 10rem 0 4rem;
+    text-align: center;
+}
+
+.search-header h1 {
+    font-size: 50px;
+    font-weight: 800;
+    color: #2d1b0e;
+    line-height: 1.1;
+}
+
+.search-header p {
+    font-size: 18px;
+    color: #7a6a5c;
+    margin-top: 1rem;
+}
+
+.search-bar-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto 0;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+    border: 2px solid #f3d7ca;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.search-form input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: #2d1b0e;
+    background: transparent;
+}
+
+.search-form input::placeholder {
+    color: #b39e92;
+}
+
+.search-form button {
+    border: none;
+    background: #e63946;
+    color: #fff;
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-form button:hover {
+    background: #d62839;
+}
+
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 40px;
+    margin-top: 20px;
+}
+
+.recipe-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.recipe-card:hover {
+    transform: translateY(-8px) scale(1.05);
+}
+
+.card-img img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-p {
+    padding: 20px 15px 10px;
+}
+
+.card-p p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
+.ingredient-preview {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.view-btn-wrapper {
+    padding: 20px;
+}
+
+.view-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    background: #e63946;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-btn:hover {
+    background: #d62839;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #7a6a5c;
+    font-size: 17px;
+    padding: 20px;
+}
+
+@media (max-width: 900px) {
+    .search-results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .search-results {
+        grid-template-columns: 1fr;
+    }
+
+    .search-header h1 {
+        font-size: 34px;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<main class="search-page">
+
+    <div class="search-header">
+        <h1>Search Recipes</h1>
+        <p>Find your next favorite dish by name or ingredient.</p>
+    </div>
+
+    <div class="search-bar-wrapper">
+        <form method="GET" action="{% url 'search' %}" class="search-form">
+            <input
+                type="text"
+                name="q"
+                placeholder="Search recipes..."
+                value="{{ query|default:'' }}"
+                autofocus>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if query %}
+    <div class="search-results">
+        {% for recipe in results %}
+        <div class="recipe-card">
+            <div class="card-img">
+                <a href="{% url 'dish' recipe.slug %}">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                </a>
+            </div>
+            <div class="card-p">
+                <p>{{ recipe.title }}</p>
+                <span class="ingredient-preview">{{ recipe.ingredient_preview }}</span>
+            </div>
+            <div class="view-btn-wrapper">
+                <a class="view-btn" href="{% url 'dish' recipe.slug %}">View Recipe</a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="no-results">No recipes found for "{{ query }}".</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</main>
+{% endblock %}

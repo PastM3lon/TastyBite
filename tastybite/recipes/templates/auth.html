@@ -1,0 +1,336 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+
+{% block title %}{% if mode == 'login' %}Log In{% else %}Create Account{% endif %} — TastyBite{% endblock %}
+
+{% block extra_css %}
+:root {
+    --bg: #f3f0f0;
+    --card-bg: #ffffff;
+    --card-border: #f4d8cc;
+    --text-main: #29140c;
+    --text-muted: #7e6a60;
+    --accent: #e63946;
+    --input-border: #f3d7ca;
+    --icon: #8f7a6f;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text-main);
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+}
+
+.auth-card {
+    width: min(420px, 100%);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 30px 36px;
+    box-shadow: 0 10px 24px rgba(33, 18, 10, 0.08);
+}
+
+.auth-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.auth-brand h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.auth-icon {
+    width: 33px;
+    height: 33px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.auth-card h2 {
+    margin: 18px 0 2px;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    margin: 0 0 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.06rem;
+}
+
+.auth-form {
+    display: grid;
+    gap: 12px;
+}
+
+.auth-form label {
+    margin-top: 6px;
+    font-size: 0.98rem;
+    font-weight: 600;
+}
+
+.input-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 14px;
+    padding: 12px 14px;
+}
+
+.input-field:focus-within {
+    border-color: var(--accent);
+    outline: none;
+}
+
+.input-icon {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--icon);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex: 0 0 auto;
+}
+
+.input-field input {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    font: inherit;
+    font-size: 1.02rem;
+    color: var(--text-main);
+    background: transparent;
+}
+
+.input-field input::placeholder {
+    color: #b39e92;
+}
+
+.admin-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 1.02rem;
+    font-weight: 500;
+}
+
+.admin-check input {
+    width: 15px;
+    height: 15px;
+    accent-color: #222;
+}
+
+.form-message {
+    min-height: 20px;
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.form-message.error {
+    color: #b3261e;
+}
+
+.form-message.success {
+    color: #2e7d32;
+}
+
+.submit-btn {
+    margin-top: 10px;
+    border: 0;
+    border-radius: 14px;
+    padding: 13px 16px;
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background: #d62839;
+}
+
+.switch-text {
+    margin: 8px 0 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.switch-text a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.errorlist {
+    list-style: none;
+    color: #b3261e;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+{% endblock %}
+
+{% block content %}
+<main class="auth-page">
+    <div class="auth-card">
+
+        <div class="auth-brand">
+            <a href="{% url 'welcome' %}">
+                <svg class="auth-icon" viewBox="0 0 24 24">
+                    <path d="M7.25285 4.25547C8.09403 2.47951 9.90263 1.25 12 1.25C14.0974 1.25 15.906 2.47951 16.7471 4.25547C16.831 4.25184 16.9153 4.25 17 4.25C20.1756 4.25 22.75 6.82436 22.75 10C22.75 12.1806 21.5363 14.0762 19.75 15.0508L19.75 18.052C19.75 18.9505 19.7501 19.6997 19.6701 20.2945C19.5857 20.9223 19.4 21.4891 18.9445 21.9445C18.4891 22.4 17.9223 22.5857 17.2945 22.6701C16.6997 22.7501 15.9505 22.75 15.052 22.75H8.94801C8.04952 22.75 7.3003 22.7501 6.70552 22.6701C6.07773 22.5857 5.51093 22.4 5.05546 21.9445C4.59999 21.4891 4.41432 20.9223 4.32991 20.2945C4.24994 19.6997 4.24997 18.9505 4.25 18.052L4.25 15.0508C2.46371 14.0762 1.25 12.1806 1.25 10C1.25 6.82436 3.82436 4.25 7 4.25C7.08469 4.25 7.16899 4.25184 7.25285 4.25547ZM6.80262 5.7545C4.54704 5.85762 2.75 7.71895 2.75 10C2.75 11.7416 3.79769 13.2402 5.30028 13.8967C5.57345 14.016 5.75 14.2859 5.75 14.584V17.25H18.25L18.25 14.584C18.25 14.2859 18.4265 14.016 18.6997 13.8967C20.2023 13.2402 21.25 11.7416 21.25 10C21.25 7.71895 19.453 5.85761 17.1974 5.7545C17.2321 5.99825 17.25 6.24718 17.25 6.5V7C17.25 7.41421 16.9142 7.75 16.5 7.75C16.0858 7.75 15.75 7.41421 15.75 7V6.5C15.75 6.07715 15.6803 5.67212 15.5524 5.29486C15.0502 3.81402 13.6484 2.75 12 2.75C10.3516 2.75 8.94981 3.81402 8.44763 5.29486C8.3197 5.67212 8.25 6.07715 8.25 6.5V7C8.25 7.41421 7.91421 7.75 7.5 7.75C7.08579 7.75 6.75 7.41421 6.75 7V6.5C6.75 6.24717 6.76792 5.99825 6.80262 5.7545ZM18.2482 18.75H5.75181C5.75604 19.3194 5.77008 19.7491 5.81654 20.0946C5.87858 20.5561 5.9858 20.7536 6.11612 20.8839C6.24643 21.0142 6.44393 21.1214 6.90539 21.1835C7.38843 21.2484 8.03599 21.25 9 21.25H15C15.964 21.25 16.6116 21.2484 17.0946 21.1835C17.5561 21.1214 17.7536 21.0142 17.8839 20.8839C18.0142 20.7536 18.1214 20.5561 18.1835 20.0946C18.2299 19.7491 18.244 19.3194 18.2482"></path>
+                </svg>
+            </a>
+            <h1>TastyBite</h1>
+        </div>
+
+        {% if mode == 'login' %}
+
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Sign in to continue cooking</p>
+
+            <form method="POST" action="{% url 'login' %}" class="auth-form">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <ul class="errorlist">
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <label for="id_username">Email Address</label>
+                <div class="input-field">
+                    <svg class="input-icon" viewBox="0 0 24 24">
+                        <path d="M4 6h16v12H4z"></path>
+                        <path d="m4 7 8 6 8-6"></path>
+                    </svg>
+                    <input type="email" id="id_username" name="username" placeholder="you@example.com" required>
+                </div>
+                {% if form.username.errors %}
+                    <ul class="errorlist">{% for e in form.username.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+                {% endif %}
+
+                <label for="id_password">Password</label>
+                <div class="input-field">
+                    <svg class="input-icon" viewBox="0 0 24 24">
+                        <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                        <path d="M8 11V8a4 4 0 0 1 8 0v3"></path>
+                    </svg>
+                    <input type="password" id="id_password" name="password" placeholder="●●●●●●●●" required>
+                </div>
+                {% if form.password.errors %}
+                    <ul class="errorlist">{% for e in form.password.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+                {% endif %}
+
+                <button type="submit" class="submit-btn">Log In</button>
+                <p class="switch-text">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+            </form>
+
+        {% else %}
+
+            <h2>Create Account</h2>
+            <p class="subtitle">Join our cooking community today</p>
+
+            <form method="POST" action="{% url 'signup' %}" class="auth-form">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <ul class="errorlist">
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <label for="id_full_name">Full Name</label>
+                <div class="input-field">
+                    <svg class="input-icon" viewBox="0 0 24 24">
+                        <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.31 0-6 1.79-6 4v1h12v-1c0-2.21-2.69-4-6-4z"></path>
+                    </svg>
+                    <input type="text" id="id_full_name" name="full_name" placeholder="First Last" required>
+                </div>
+                {% if form.full_name.errors %}
+                    <ul class="errorlist">{% for e in form.full_name.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+                {% endif %}
+
+                <label for="id_email">Email Address</label>
+                <div class="input-field">
+                    <svg class="input-icon" viewBox="0 0 24 24">
+                        <path d="M4 6h16v12H4z"></path>
+                        <path d="m4 7 8 6 8-6"></path>
+                    </svg>
+                    <input type="email" id="id_email" name="email" placeholder="you@example.com" required>
+                </div>
+                {% if form.email.errors %}
+                    <ul class="errorlist">{% for e in form.email.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+                {% endif %}
+
+                <label for="id_password1">Password</label>
+                <div class="input-field">
+                    <svg class="input-icon" viewBox="0 0 24 24">
+                        <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                        <path d="M8 11V8a4 4 0 0 1 8 0v3"></path>
+                    </svg>
+                    <input type="password" id="id_password1" name="password1" placeholder="●●●●●●●●" required>
+                </div>
+                {% if form.password1.errors %}
+                    <ul class="errorlist">{% for e in form.password1.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+                {% endif %}
+
+                <label for="id_password2">Confirm Password</label>
+                <div class="input-field">
+                    <svg class="input-icon" viewBox="0 0 24 24">
+                        <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                        <path d="M8 11V8a4 4 0 0 1 8 0v3"></path>
+                    </svg>
+                    <input type="password" id="id_password2" name="password2" placeholder="●●●●●●●●" required>
+                </div>
+                {% if form.password2.errors %}
+                    <ul class="errorlist">{% for e in form.password2.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+                {% endif %}
+
+                <div class="admin-check">
+                    <input type="checkbox" id="id_is_admin" name="is_admin">
+                    <span>Sign up as Admin</span>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Account</button>
+                <p class="switch-text">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+            </form>
+
+        {% endif %}
+
+    </div>
+</main>
+{% endblock %}

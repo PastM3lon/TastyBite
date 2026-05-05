@@ -1,0 +1,225 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+
+{% block title %}My Favorites — TastyBite{% endblock %}
+
+{% block extra_css %}
+.fav-page {
+    padding: 10rem 0 4rem;
+    text-align: center;
+}
+
+.fav-header h1 {
+    font-size: 45px;
+    line-height: 60px;
+    font-weight: 800;
+    color: #2d1b0e;
+}
+
+.fav-p p {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #7a6a5c;
+    margin-top: 1rem;
+}
+
+.fav-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 40px;
+}
+
+.fav-recipe {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.fav-recipe:hover {
+    transform: translateY(-8px) scale(1.05);
+}
+
+.fav-img img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.fav-recipe-header {
+    padding: 20px 15px 10px;
+}
+
+.fav-recipe-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
+.card-footer {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 20px;
+}
+
+.view-recipe-link {
+    padding: 20px;
+    width: 100%;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    background: #e63946;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    background: #d62839;
+}
+
+.heart-icon {
+    padding-right: 12px;
+}
+
+.remove-form button {
+    border: none;
+    background: #f4d6d9;
+    color: #9b1c2b;
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.2s;
+}
+
+.remove-form button:hover {
+    background: #efbcc3;
+}
+
+.empty-favorites {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 18px;
+    border-radius: 12px;
+    background: #fff;
+    color: #7a6a5c;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.back {
+    margin-top: 24px;
+}
+
+.back-btn {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 14px 22px;
+    border-radius: 14px;
+    background: #e63946;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 8px 16px rgba(230, 57, 70, 0.22);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-btn:hover {
+    background: #d62839;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+    .fav-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .fav-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .fav-header h1 {
+        font-size: 32px;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<main class="fav-page">
+
+    <div class="fav-title">
+        <div class="fav-header">
+            <h1>My Favorite Recipes</h1>
+        </div>
+        <div class="fav-p">
+            <p>Here are the recipes you saved as favorites.</p>
+        </div>
+    </div>
+
+    {% if favorites %}
+    <div class="fav-cards">
+        {% for recipe in favorites %}
+        <div class="fav-recipe" id="{{ recipe.slug }}">
+            <div class="fav-img">
+                <a href="{% url 'dish' recipe.slug %}">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                </a>
+            </div>
+            <div class="fav-recipe-header">
+                <h2>{{ recipe.title }}</h2>
+            </div>
+            <div class="card-footer">
+                <div class="view-recipe-link">
+                    <a href="{% url 'dish' recipe.slug %}">
+                        <button class="btn">View Recipe</button>
+                    </a>
+                </div>
+                <div class="heart-icon">
+                    <form method="POST" action="{% url 'remove_favorite' recipe.id %}" class="remove-form">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <p class="empty-favorites">No favorites yet. Add recipes from the recipes page.</p>
+    {% endif %}
+
+    <div class="back">
+        <a class="back-btn" href="{% url 'recipes' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+            </svg>
+            <span>Back to Recipes</span>
+        </a>
+    </div>
+
+</main>
+{% endblock %}
