@@ -1,9 +1,10 @@
-{% extends 'recipes/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Recipes — TastyBite{% endblock %}
 
 {% block extra_css %}
+<style>
 .home {
     padding: 10rem 0 4rem;
 }
@@ -113,6 +114,7 @@
         font-size: 40px;
     }
 }
+</style>
 {% endblock %}
 
 {% block content %}

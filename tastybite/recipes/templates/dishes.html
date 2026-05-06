@@ -1,9 +1,10 @@
-{% extends 'recipes/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}{{ recipe.title }} — TastyBite{% endblock %}
 
 {% block extra_css %}
+<style>
 .dish-page {
     width: min(1180px, calc(100% - 40px));
     margin: 0 auto;
@@ -157,6 +158,7 @@
         font-size: 22px;
     }
 }
+</style>
 {% endblock %}
 
 {% block content %}
