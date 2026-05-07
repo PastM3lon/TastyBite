@@ -1,0 +1,92 @@
+[
+  {
+    "model": "recipes.recipe",
+    "pk": 1,
+    "fields": {
+      "name": "Spaghetti Carbonara",
+      "image_url": "https://www.allrecipes.com/thmb/zJzTLhtUWknHXVoFIzysljJ9wR8=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg",
+      "summary": "The ultimate Roman comfort food",
+      "created_at": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 2,
+    "fields": {
+      "name": "Shawarma",
+      "image_url": "https://www.munatycooking.com/wp-content/uploads/2023/12/chicken-shawarma-image-feature-2023.jpg",
+      "summary": "Juicy, spiced chicken wrapped in warm pita",
+      "created_at": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 3,
+    "fields": {
+      "name": "Tacos",
+      "image_url": "https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos-1024x767.jpg",
+      "summary": "Bold, beefy tacos with a kick of chili",
+      "created_at": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 1,
+    "fields": { "recipe": 1, "quantity": "400g", "name": "Spaghetti" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 2,
+    "fields": { "recipe": 1, "quantity": "150g", "name": "Pancetta" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 3,
+    "fields": { "recipe": 1, "quantity": "3", "name": "Eggs" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 4,
+    "fields": { "recipe": 1, "quantity": "100g", "name": "Parmesan" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 5,
+    "fields": { "recipe": 2, "quantity": "500g", "name": "Chicken thighs" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 6,
+    "fields": { "recipe": 2, "quantity": "4 cloves", "name": "Garlic" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 7,
+    "fields": { "recipe": 2, "quantity": "1 tsp", "name": "Cumin" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 8,
+    "fields": { "recipe": 2, "quantity": "4", "name": "Pita bread" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 9,
+    "fields": { "recipe": 3, "quantity": "400g", "name": "Ground beef" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 10,
+    "fields": { "recipe": 3, "quantity": "1 tsp", "name": "Chili powder" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 11,
+    "fields": { "recipe": 3, "quantity": "8", "name": "Corn tortillas" }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 12,
+    "fields": { "recipe": 3, "quantity": "1", "name": "Lime" }
+  }
+]
