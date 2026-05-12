@@ -249,8 +249,9 @@
             <h2>Welcome Back</h2>
             <p class="subtitle">Sign in to continue cooking</p>
 
-            <form method="POST" action="{% url 'login' %}" class="auth-form">
+            <form method="POST" action="{% url 'auth' %}" class="auth-form">
                 {% csrf_token %}
+                <input type="hidden" name="form_type" value="login">
 
                 {% if form.non_field_errors %}
                 <ul class="errorlist">
@@ -285,7 +286,7 @@
             {% endif %}
 
             <button type="submit" class="submit-btn">Log In</button>
-            <p class="switch-text">Don't have an account? <a href="{% url 'signup' %}?mode=signup">Sign up</a></p>
+            <p class="switch-text">Don't have an account? <a href="{% url 'auth' %}?mode=signup">Sign up</a></p>
         </form>
 
         {% else %}
@@ -293,8 +294,9 @@
         <h2>Create Account</h2>
         <p class="subtitle">Join our cooking community today</p>
 
-        <form method="POST" action="{% url 'signup' %}" class="auth-form">
+        <form method="POST" action="{% url 'auth' %}" class="auth-form">
             {% csrf_token %}
+            <input type="hidden" name="form_type" value="signup">
 
             {% if form.non_field_errors %}
             <ul class="errorlist">
@@ -358,7 +360,7 @@
             </div>
 
             <button type="submit" class="submit-btn">Create Account</button>
-            <p class="switch-text">Already have an account? <a href="{% url 'login' %}?mode=login">Log in</a></p>
+            <p class="switch-text">Already have an account? <a href="{% url 'auth' %}?mode=login">Log in</a></p>
             </form>
 
             {% endif %}

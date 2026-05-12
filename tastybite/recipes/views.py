@@ -117,7 +117,7 @@ def auth_view(request):
         return redirect('recipes')
 
     # ── LOGIN ──
-    if request.method == 'POST' and 'password' in request.POST:
+    if request.method == 'POST' and request.POST.get('form_type') == 'login':
         form = LoginForm(request.POST)
         if form.is_valid():
             user = form.cleaned_data['user']
@@ -126,7 +126,7 @@ def auth_view(request):
         return render(request, 'auth.html', {'mode': 'login', 'form': form})
 
     # ── SIGNUP ──
-    if request.method == 'POST' and 'password1' in request.POST:
+    if request.method == 'POST' and request.POST.get('form_type') == 'signup':
         form = SignupForm(request.POST)
         if form.is_valid():
             full_name = form.cleaned_data['full_name'].strip()
