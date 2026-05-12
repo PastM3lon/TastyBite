@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-h76t_sluhslz-ysk*ylqv)2#fvz3e!lnn&iw(y)!@&1nvjk35e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
 
 # Application definition
@@ -122,3 +122,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'recipes.User'
+
+# Auth redirects
+LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/recipes/'

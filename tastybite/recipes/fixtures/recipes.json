@@ -4,6 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Spaghetti Carbonara",
+      "slug": "spaghetti-carbonara",
       "image_url": "https://www.allrecipes.com/thmb/zJzTLhtUWknHXVoFIzysljJ9wR8=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg",
       "summary": "The ultimate Roman comfort food",
       "created_at": "2026-01-01T00:00:00Z"
@@ -14,6 +15,7 @@
     "pk": 2,
     "fields": {
       "name": "Shawarma",
+      "slug": "shawarma",
       "image_url": "https://www.munatycooking.com/wp-content/uploads/2023/12/chicken-shawarma-image-feature-2023.jpg",
       "summary": "Juicy, spiced chicken wrapped in warm pita",
       "created_at": "2026-01-01T00:00:00Z"
@@ -24,6 +26,7 @@
     "pk": 3,
     "fields": {
       "name": "Tacos",
+      "slug": "tacos",
       "image_url": "https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos-1024x767.jpg",
       "summary": "Bold, beefy tacos with a kick of chili",
       "created_at": "2026-01-01T00:00:00Z"
@@ -88,5 +91,140 @@
     "model": "recipes.ingredient",
     "pk": 12,
     "fields": { "recipe": 3, "quantity": "1", "name": "Lime" }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 1,
+    "fields": {
+      "recipe": 1,
+      "order": 1,
+      "body": "Cook the spaghetti in salted boiling water until al dente, then reserve a little pasta water before draining."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 2,
+    "fields": {
+      "recipe": 1,
+      "order": 2,
+      "body": "Crisp the pancetta in a pan over medium heat while the pasta cooks."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 3,
+    "fields": {
+      "recipe": 1,
+      "order": 3,
+      "body": "Whisk eggs and parmesan together, then season with black pepper."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 4,
+    "fields": {
+      "recipe": 1,
+      "order": 4,
+      "body": "Toss the hot pasta with pancetta, remove from heat, and stir in the egg mixture until glossy."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 5,
+    "fields": {
+      "recipe": 1,
+      "order": 5,
+      "body": "Loosen with reserved pasta water as needed and serve immediately."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 6,
+    "fields": {
+      "recipe": 2,
+      "order": 1,
+      "body": "Mix garlic, cumin, salt, pepper, oil, and lemon juice into a marinade."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 7,
+    "fields": {
+      "recipe": 2,
+      "order": 2,
+      "body": "Coat the chicken thighs and let them marinate for at least 30 minutes."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 8,
+    "fields": {
+      "recipe": 2,
+      "order": 3,
+      "body": "Cook the chicken in a hot pan or oven until browned and fully cooked."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 9,
+    "fields": {
+      "recipe": 2,
+      "order": 4,
+      "body": "Rest briefly, then slice the chicken into thin strips."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 10,
+    "fields": {
+      "recipe": 2,
+      "order": 5,
+      "body": "Serve in warm pita bread with vegetables and sauce."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 11,
+    "fields": {
+      "recipe": 3,
+      "order": 1,
+      "body": "Brown the ground beef in a skillet over medium-high heat."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 12,
+    "fields": {
+      "recipe": 3,
+      "order": 2,
+      "body": "Add chili powder, salt, and a splash of water, then simmer until saucy."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 13,
+    "fields": {
+      "recipe": 3,
+      "order": 3,
+      "body": "Warm the corn tortillas until soft and flexible."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 14,
+    "fields": {
+      "recipe": 3,
+      "order": 4,
+      "body": "Fill each tortilla with beef and finish with lime juice."
+    }
+  },
+  {
+    "model": "recipes.recipestep",
+    "pk": 15,
+    "fields": {
+      "recipe": 3,
+      "order": 5,
+      "body": "Serve hot with your favorite toppings."
+    }
   }
 ]

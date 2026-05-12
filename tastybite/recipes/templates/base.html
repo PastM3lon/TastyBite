@@ -223,10 +223,21 @@
                         <span>Favorites</span>
                     </a>
                 </div>
+
+                {% if user.is_authenticated and user.is_admin or user.is_superuser %}
+                <div class="admin-link link">
+                    <a href="{% url 'admin_panel' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px">
+                            <path d="M120-120v-80h80v-560q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v560h80v80H120Zm160-80h400v-560H280v560Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80ZM280-200v-560 560Z"/>
+                        </svg>
+                        <span>Admin</span>
+                    </a>
+                </div>
+                {% endif %}
                 
                 {% if user.is_authenticated %}
                 <div class="logout-link link">
-                    <a href="{% url 'welcome' %}">
+                    <a href="{% url 'logout' %}">
                         <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px">
                             <path d="M600-120v-80h160v-560H600v-80h160q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H600Zm-80-160-56-56 104-104H120v-80h448L464-624l56-56 200 200-200 200Z"/>
                         </svg>

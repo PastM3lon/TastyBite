@@ -66,11 +66,27 @@
     color: #222;
 }
 
-.ingredient-preview {
-    display: block;
-    margin-top: 8px;
-    font-size: 14px;
-    color: #666;
+
+.ingredient-preview-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    justify-content: center;
+}
+.ingredient-pill {
+    background: #f8f7f8;
+    border: 1px solid #e8d8db;
+    border-radius: 16px;
+    padding: 4px 12px;
+    font-size: 13px;
+    color: #de3c4b;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(222,60,75,0.04);
+    transition: background 0.2s;
+}
+.ingredient-pill:hover {
+    background: #fdebed;
 }
 
 .add-fav {
@@ -138,7 +154,14 @@
             </div>
             <div class="card-p">
                 <p>{{ recipe.title }}</p>
-                <span class="ingredient-preview">{{ recipe.ingredient_preview }}</span>
+                                <div class="ingredient-preview-box">
+                                    {% for ing in recipe.ingredients|slice:':3' %}
+                                        <span class="ingredient-pill">{{ ing.quantity }} {{ ing.name }}</span>
+                                    {% endfor %}
+                                    {% if recipe.ingredients.count > 3 %}
+                                        <span class="ingredient-pill" style="background:#fff3f3;color:#b71c1c;">+{{ recipe.ingredients.count|add:"-3" }} more</span>
+                                    {% endif %}
+                                </div>
             </div>
             <div class="add-fav">
                 <button

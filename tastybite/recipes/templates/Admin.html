@@ -1,0 +1,488 @@
+{% extends 'base.html' %}
+{% block title %}Admin Panel - TastyBite{% endblock %}
+
+{% block extra_css %}
+<style>
+.admin-dashboard {
+    padding: 8rem 0 4rem;
+}
+
+.page-bg {
+    text-align: center;
+    margin-bottom: 34px;
+}
+
+.page-bg h1 {
+    font-size: clamp(40px, 6vw, 60px);
+    line-height: 1;
+    font-weight: 800;
+    color: #2d1b0e;
+}
+
+.page-bg p {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #7a6a5c;
+    margin-top: 1rem;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.admin-form,
+.existing-recipes {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e8e8e8;
+    padding: 36px 32px;
+    width: min(600px, 100%);
+}
+
+.admin-form h2,
+.existing-recipes h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.admin-form h2 {
+    text-align: center;
+}
+
+.form-field {
+    margin-top: 18px;
+}
+
+.form-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    border-color: #e07070;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #aaa;
+}
+
+.errorlist {
+    list-style: none;
+    color: #b3261e;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 6px 0 0;
+    padding: 0;
+}
+
+.ingredients-header,
+.instructions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.ingredients-header span,
+.instructions-header span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.add-btn {
+    padding: 7px 16px;
+    background: #fff0f0;
+    color: #c0392b;
+    border: 1px solid #f5c0c0;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #ffe0e0;
+}
+
+.ingredient-row,
+.instruction-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.ingredient-row .qty {
+    width: 95px;
+    flex-shrink: 0;
+}
+
+.ingredient-row .name,
+.instruction-row .instruction-text {
+    flex: 1;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #e05555;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.remove-btn:hover {
+    color: #900;
+}
+
+.hidden-data-field {
+    display: none;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    margin-top: 28px;
+    padding: 13px;
+    background: #e03e2d;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.submit-btn:hover {
+    background: #c0392b;
+}
+
+.recipe-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.recipe-item:last-child {
+    border-bottom: none;
+}
+
+.recipe-name {
+    min-width: 0;
+    font-size: 14px;
+    color: #1a1a1a;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.recipe-name:hover {
+    color: #e03e2d;
+}
+
+.recipe-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.edit-btn {
+    border: 1px solid #d0d0d0;
+    background: #f5f5f5;
+    color: #555;
+}
+
+.edit-btn:hover {
+    background: #eaeaea;
+}
+
+.delete-btn {
+    border: 1px solid #f5c0c0;
+    color: #c0392b;
+    background: #fff0f0;
+}
+
+.delete-btn:hover {
+    background: #ffe0e0;
+}
+
+.empty-row {
+    color: #7a6a5c;
+    font-size: 14px;
+    padding-top: 4px;
+}
+
+@media (max-width: 700px) {
+    .admin-form,
+    .existing-recipes {
+        padding: 28px 22px;
+    }
+
+    .recipe-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="admin-dashboard">
+    <div class="page-bg">
+        <h1>Admin Dashboard</h1>
+        <p>Manage your recipe collection</p>
+    </div>
+
+    <div class="page-content">
+        <section class="admin-form">
+            <h2>Add a New Recipe</h2>
+
+            <form method="POST" action="{% url 'admin_panel' %}">
+                {% csrf_token %}
+
+                <div class="form-field">
+                    <label for="{{ form.name.id_for_label }}">Recipe Name</label>
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.image_url.id_for_label }}">Recipe Image path</label>
+                    {{ form.image_url }}
+                    {{ form.image_url.errors }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.summary.id_for_label }}">Catchy Line</label>
+                    {{ form.summary }}
+                    {{ form.summary.errors }}
+                </div>
+
+                <div class="ingredients-header">
+                    <span>Ingredients</span>
+                    <button class="add-btn" id="add-ingredient-btn" type="button">+ Add Ingredient</button>
+                </div>
+                {{ form.ingredients }}
+                <div id="ingredients-list">
+                    <div class="ingredient-row">
+                        <input class="qty" type="text" placeholder="2 cups">
+                        <input class="name" type="text" placeholder="Ingredient name">
+                        <button type="button" class="remove-btn">&#10005;</button>
+                    </div>
+                </div>
+                {{ form.ingredients.errors }}
+
+                <div class="instructions-header">
+                    <span>Instructions</span>
+                    <button class="add-btn" id="add-instruction-btn" type="button">+ Add Instruction</button>
+                </div>
+                {{ form.instructions }}
+                <div id="instructions-list">
+                    <div class="instruction-row">
+                        <input class="instruction-text" type="text" placeholder="Instruction step">
+                        <button type="button" class="remove-btn">&#10005;</button>
+                    </div>
+                </div>
+                {{ form.instructions.errors }}
+
+                <button type="submit" class="submit-btn" id="save-recipe-btn">Add Recipe</button>
+            </form>
+        </section>
+
+        <section class="existing-recipes">
+            <h2>Existing Recipes</h2>
+
+            {% for recipe in recipes %}
+            <div class="recipe-item">
+                <a href="{% url 'dish' recipe.slug %}" class="recipe-name">{{ recipe.name }}</a>
+                <div class="recipe-actions">
+                    <a class="edit-btn" href="{% url 'recipe_edit' recipe.id %}">Edit</a>
+                    <form method="POST" action="{% url 'recipe_delete' recipe.id %}">
+                        {% csrf_token %}
+                        <button class="delete-btn" type="submit" onclick="return confirm('Delete this recipe?')">Delete</button>
+                    </form>
+                </div>
+            </div>
+            {% empty %}
+            <p class="empty-row">No recipes yet.</p>
+            {% endfor %}
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const adminRecipeForm = document.querySelector('.admin-form form');
+const addIngredientBtn = document.getElementById('add-ingredient-btn');
+const ingredientList = document.getElementById('ingredients-list');
+const addInstructionBtn = document.getElementById('add-instruction-btn');
+const instructionList = document.getElementById('instructions-list');
+const ingredientsData = document.getElementById('ingredients-data');
+const instructionsData = document.getElementById('instructions-data');
+
+function createIngredientRow(value = '', name = '') {
+    const row = document.createElement('div');
+    row.className = 'ingredient-row';
+    row.innerHTML = `
+        <input class="qty" type="text" placeholder="2 cups" value="${escapeHtml(value)}">
+        <input class="name" type="text" placeholder="Ingredient name" value="${escapeHtml(name)}">
+        <button type="button" class="remove-btn">&#10005;</button>
+    `;
+    attachRemove(row.querySelector('.remove-btn'));
+    return row;
+}
+
+function createInstructionRow(text = '') {
+    const row = document.createElement('div');
+    row.className = 'instruction-row';
+    row.innerHTML = `
+        <input class="instruction-text" type="text" placeholder="Instruction step" value="${escapeHtml(text)}">
+        <button type="button" class="remove-btn">&#10005;</button>
+    `;
+    attachRemove(row.querySelector('.remove-btn'));
+    return row;
+}
+
+function escapeHtml(value) {
+    if (!value) return '';
+    return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function updateRemoveButtons(list) {
+    const rows = list.querySelectorAll('.ingredient-row, .instruction-row');
+    const buttons = list.querySelectorAll('.remove-btn');
+    const hide = rows.length <= 1;
+    buttons.forEach(btn => btn.hidden = hide);
+}
+
+function attachRemove(button) {
+    if (!button) return;
+    button.addEventListener('click', () => {
+        const row = button.closest('.ingredient-row, .instruction-row');
+        if (!row) return;
+        const list = row.parentElement;
+        const rows = list.querySelectorAll('.ingredient-row, .instruction-row');
+        if (rows.length <= 1) return;
+        row.remove();
+        updateRemoveButtons(list);
+    });
+}
+
+function loadIngredientRows() {
+    const lines = (ingredientsData.value || '').split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+    ingredientList.innerHTML = '';
+    if (!lines.length) {
+        ingredientList.appendChild(createIngredientRow());
+    } else {
+        lines.forEach(line => {
+            const parts = line.split('|');
+            const quantity = parts.length > 1 ? parts.shift().trim() : '';
+            const name = parts.join('|').trim() || line;
+            ingredientList.appendChild(createIngredientRow(quantity, name));
+        });
+    }
+    updateRemoveButtons(ingredientList);
+}
+
+function loadInstructionRows() {
+    const lines = (instructionsData.value || '').split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+    instructionList.innerHTML = '';
+    if (!lines.length) {
+        instructionList.appendChild(createInstructionRow());
+    } else {
+        lines.forEach(line => instructionList.appendChild(createInstructionRow(line)));
+    }
+    updateRemoveButtons(instructionList);
+}
+
+function syncRowsToHiddenFields() {
+    ingredientsData.value = Array.from(ingredientList.querySelectorAll('.ingredient-row'))
+        .map(row => {
+            const quantity = row.querySelector('.qty').value.trim();
+            const name = row.querySelector('.name').value.trim();
+            return quantity || name ? `${quantity} | ${name}`.trim() : '';
+        })
+        .filter(Boolean)
+        .join('\n');
+
+    instructionsData.value = Array.from(instructionList.querySelectorAll('.instruction-row'))
+        .map(row => row.querySelector('.instruction-text').value.trim())
+        .filter(Boolean)
+        .join('\n');
+}
+
+if (addIngredientBtn) {
+    addIngredientBtn.addEventListener('click', () => {
+        ingredientList.appendChild(createIngredientRow());
+        updateRemoveButtons(ingredientList);
+    });
+}
+
+if (addInstructionBtn) {
+    addInstructionBtn.addEventListener('click', () => {
+        instructionList.appendChild(createInstructionRow());
+        updateRemoveButtons(instructionList);
+    });
+}
+
+if (adminRecipeForm) {
+    adminRecipeForm.addEventListener('submit', syncRowsToHiddenFields);
+}
+
+loadIngredientRows();
+loadInstructionRows();
+</script>
+{% endblock %}
