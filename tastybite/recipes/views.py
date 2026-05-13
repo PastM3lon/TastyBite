@@ -96,6 +96,25 @@ def search_view(request):
 
 
 # ─────────────────────────────────────────
+# Search API (AJAX)
+# ─────────────────────────────────────────
+def search_api(request):
+    query = request.GET.get('q', '').strip()
+    results = []
+    
+    if query:
+        matched = Recipe.objects.filter(
+            name__icontains=query
+        ).prefetch_related('ingredients', 'steps') | Recipe.objects.filter(
+            ingredients__name__icontains=query
+        ).prefetch_related('ingredients', 'steps')
+        matched = matched.distinct()
+        results = [recipe_to_dict(r) for r in matched]
+    
+    return JsonResponse({'results': results})
+
+s
+# ─────────────────────────────────────────
 # Dish detail
 # ─────────────────────────────────────────
 def dish_view(request, slug):

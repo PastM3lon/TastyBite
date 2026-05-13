@@ -178,39 +178,77 @@
     </div>
 
     <div class="search-bar-wrapper">
-        <form method="GET" action="{% url 'search' %}" class="search-form">
+        <form class="search-form" id="searchForm">
             <input
                 type="text"
+                id="searchInput"
                 name="q"
                 placeholder="Search recipes..."
-                value="{{ query|default:'' }}"
                 autofocus>
             <button type="submit">Search</button>
         </form>
     </div>
 
-    {% if query %}
-    <div class="search-results">
-        {% for recipe in results %}
-        <div class="recipe-card">
-            <div class="card-img">
-                <a href="{% url 'dish' recipe.slug %}">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                </a>
-            </div>
-            <div class="card-p">
-                <p>{{ recipe.title }}</p>
-                <span class="ingredient-preview">{{ recipe.ingredient_preview }}</span>
-            </div>
-            <div class="view-btn-wrapper">
-                <a class="view-btn" href="{% url 'dish' recipe.slug %}">View Recipe</a>
-            </div>
-        </div>
-        {% empty %}
-        <p class="no-results">No recipes found for "{{ query }}".</p>
-        {% endfor %}
-    </div>
-    {% endif %}
+    <div class="search-results" id="searchResults"></div>
 
 </main>
+
+<script>
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    // Handle form submission
+    searchForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await performSearch();
+    });
+
+    // Handle real-time search as user types
+    searchInput.addEventListener('input', async () => {
+        if (searchInput.value.trim().length > 0) {
+            await performSearch();
+        } else {
+            searchResults.innerHTML = '';
+        }
+    });
+
+    async function performSearch() {
+        const query = searchInput.value.trim();
+        if (!query) return;
+
+        try {
+            const response = await fetch(`/api/search/?q=${encodeURIComponent(query)}`);
+            const data = await response.json();
+            renderResults(data.results);
+        } catch (error) {
+            console.error('Search error:', error);
+            searchResults.innerHTML = '<p class="no-results">Error performing search. Please try again.</p>';
+        }
+    }
+
+    function renderResults(recipes) {
+        if (recipes.length === 0) {
+            searchResults.innerHTML = `<p class="no-results">No recipes found for "${searchInput.value}".</p>`;
+            return;
+        }
+
+        searchResults.innerHTML = recipes.map(recipe => `
+            <div class="recipe-card">
+                <div class="card-img">
+                    <a href="/dish/${recipe.slug}/">
+                        <img src="${recipe.image}" alt="${recipe.title}">
+                    </a>
+                </div>
+                <div class="card-p">
+                    <p>${recipe.title}</p>
+                    <span class="ingredient-preview">${recipe.ingredient_preview}</span>
+                </div>
+                <div class="view-btn-wrapper">
+                    <a class="view-btn" href="/dish/${recipe.slug}/">View Recipe</a>
+                </div>
+            </div>
+        `).join('');
+    }
+</script>
 {% endblock %}

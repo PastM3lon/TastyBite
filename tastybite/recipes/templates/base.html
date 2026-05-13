@@ -236,6 +236,11 @@
                 {% endif %}
                 
                 {% if user.is_authenticated %}
+                <div class="username-display">
+                    <span style="font-size: 15px; color: #333; font-weight: 500;">
+                        {{ user.first_name|default:user.username }}
+                    </span>
+                </div>
                 <div class="logout-link link">
                     <a href="{% url 'logout' %}">
                         <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px">
