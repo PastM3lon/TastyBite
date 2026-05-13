@@ -113,7 +113,7 @@ def search_api(request):
     
     return JsonResponse({'results': results})
 
-s
+
 # ─────────────────────────────────────────
 # Dish detail
 # ─────────────────────────────────────────
