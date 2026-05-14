@@ -28,8 +28,8 @@ def recipe_to_dict(recipe):
         'image': recipe.image_url,
         'summary': recipe.summary,
         'ingredient_preview': ingredient_preview,
-        'ingredients': recipe.ingredients.all(),
-        'steps': recipe.steps.all(),
+        'ingredients': list(recipe.ingredients.all().values('id', 'name', 'quantity')),
+        'steps': list(recipe.steps.all().values('id', 'order', 'body')),
     }
 
 

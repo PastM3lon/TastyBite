@@ -10,7 +10,7 @@ class CustomUserManager(UserManager):
 
 class User(AbstractUser):
     # AbstractUser already gives us: username, email, password, first_name, last_name
-    # We just add the is_admin flag from your signup checkbox
+    # We just add the is_admin flag
     is_admin = models.BooleanField(default=False)
     objects = CustomUserManager()
 
