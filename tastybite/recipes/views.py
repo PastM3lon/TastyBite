@@ -47,7 +47,6 @@ def welcome_view(request):
 # ─────────────────────────────────────────
 def recipes_list(request):
     all_recipes = Recipe.objects.prefetch_related('ingredients', 'steps').all()
-    recipes = [recipe_to_dict(r) for r in all_recipes]
 
     user_favorites = []
     if request.user.is_authenticated:
@@ -57,7 +56,7 @@ def recipes_list(request):
         user_favorites = [str(fid) for fid in user_favorites]
 
     return render(request, 'Recipes.html', {
-        'recipes': recipes,
+        'recipes': all_recipes,
         'user_favorites': user_favorites,
     })
 
@@ -70,8 +69,7 @@ def favorites_view(request):
     fav_recipes = Recipe.objects.filter(
         favorited_by__user=request.user
     ).prefetch_related('ingredients', 'steps')
-    favorites = [recipe_to_dict(r) for r in fav_recipes]
-    return render(request, 'Favorites.html', {'favorites': favorites})
+    return render(request, 'Favorites.html', {'favorites': fav_recipes})
 
 
 # ─────────────────────────────────────────
@@ -87,7 +85,7 @@ def search_view(request):
             ingredients__name__icontains=query
         ).prefetch_related('ingredients', 'steps')
         matched = matched.distinct()
-        results = [recipe_to_dict(r) for r in matched]
+        results = matched
 
     return render(request, 'search.html', {
         'query': query,
@@ -122,8 +120,7 @@ def dish_view(request, slug):
     if slug.isdigit():
         lookup |= Q(id=int(slug))
     recipe_obj = get_object_or_404(Recipe, lookup)
-    recipe = recipe_to_dict(recipe_obj)
-    return render(request, 'dishes.html', {'recipe': recipe})
+    return render(request, 'dishes.html', {'recipe': recipe_obj})
 
 
 # ─────────────────────────────────────────

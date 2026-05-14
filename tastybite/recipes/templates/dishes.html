@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ recipe.title }} — TastyBite{% endblock %}
+{% block title %}{{ recipe.name }} — TastyBite{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -175,7 +175,7 @@
     {% if recipe %}
 
     <section class="dish-hero">
-        <h1 class="dish-title">{{ recipe.title }}</h1>
+        <h1 class="dish-title">{{ recipe.name }}</h1>
         {% if recipe.summary %}
         <p class="dish-summary">{{ recipe.summary }}</p>
         {% endif %}
@@ -198,7 +198,7 @@
             <article class="panel">
                 <h2>Instructions</h2>
                 <ol class="instructions-list">
-                    {% for step in recipe.steps %}
+                    {% for step in recipe.steps.all %}
                     <li>
                         <span class="step-dot"></span>
                         <div>

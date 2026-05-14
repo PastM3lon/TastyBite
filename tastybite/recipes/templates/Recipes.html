@@ -149,17 +149,17 @@
         <div class="recipe-card" id="{{ recipe.slug }}">
             <div class="card-img">
                 <a href="{% url 'dish' recipe.slug %}">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}" width="400" height="300">
+                    <img src="{{ recipe.image_url }}" alt="{{ recipe.name }}" width="400" height="300">
                 </a>
             </div>
             <div class="card-p">
-                <p>{{ recipe.title }}</p>
+                <p>{{ recipe.name }}</p>
                                 <div class="ingredient-preview-box">
-                                    {% for ing in recipe.ingredients|slice:':3' %}
+                                    {% for ing in recipe.ingredients.all|slice:':3' %}
                                         <span class="ingredient-pill">{{ ing.quantity }} {{ ing.name }}</span>
                                     {% endfor %}
-                                    {% if recipe.ingredients.count > 3 %}
-                                        <span class="ingredient-pill" style="background:#fff3f3;color:#b71c1c;">+{{ recipe.ingredients.count|add:"-3" }} more</span>
+                                    {% if recipe.ingredients.all|length > 3 %}
+                                        <span class="ingredient-pill" style="background:#fff3f3;color:#b71c1c;">+{{ recipe.ingredients.all|length|add:"-3" }} more</span>
                                     {% endif %}
                                 </div>
             </div>
@@ -168,8 +168,8 @@
                     class="favorite-btn {% if recipe.slug in user_favorites %}is-favorite{% endif %}"
                     type="button"
                     data-id="{{ recipe.id }}"
-                    data-title="{{ recipe.title }}"
-                    data-image="{{ recipe.image }}"
+                    data-title="{{ recipe.name }}"
+                    data-image="{{ recipe.image_url }}"
                     data-slug="{{ recipe.slug }}">
                     {% if recipe.slug in user_favorites %}Added{% else %}Add to Favorites{% endif %}
                 </button>

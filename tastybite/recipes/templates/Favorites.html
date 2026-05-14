@@ -187,11 +187,11 @@
         <div class="fav-recipe" id="{{ recipe.slug }}">
             <div class="fav-img">
                 <a href="{% url 'dish' recipe.slug %}">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                    <img src="{{ recipe.image_url }}" alt="{{ recipe.name }}">
                 </a>
             </div>
             <div class="fav-recipe-header">
-                <h2>{{ recipe.title }}</h2>
+                <h2>{{ recipe.name }}</h2>
             </div>
             <div class="card-footer">
                 <div class="view-recipe-link">
